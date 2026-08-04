@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elizabeth Strain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #7E96AF;
+    --cream: #F5F1E8;
+    --gold: #C9B27E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+
+  body {
+    background-color: var(--blue);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    color: var(--cream);
+    overflow: hidden;
+  }
+
+  .stage {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .linen {
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 3px),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 3px),
+      radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 55%);
+    animation: breathe 16s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 1; }
+  }
+
+  .nav {
+    position: absolute;
+    top: 34px;
+    left: 40px;
+    right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.2s;
+  }
+
+  .nav-name {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.34em;
+    color: var(--cream);
+  }
+
+  .nav-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .nav-icon span {
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--cream);
+    opacity: 0.85;
+  }
+
+  .marker {
+    position: absolute;
+    top: 44%;
+    left: 9%;
+    width: 8px;
+    height: 8px;
+    border: 1px solid rgba(245,241,232,0.5);
+    border-radius: 50%;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.6s;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 8vw;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 0.98;
+    color: var(--cream);
+  }
+
+  .line1 {
+    font-size: clamp(34px, 4.4vw, 58px);
+    margin-left: 2vw;
+    opacity: 0;
+    animation: fadeUp 1.1s ease forwards 0.5s;
+  }
+
+  .line2 {
+    font-size: clamp(64px, 9.5vw, 130px);
+    margin-left: 20vw;
+    margin-top: 0.05em;
+    opacity: 0;
+    animation: fadeUp 1.1s ease forwards 0.85s;
+  }
+
+  .line3 {
+    font-size: clamp(56px, 8.4vw, 118px);
+    margin-left: 34vw;
+    margin-top: -0.05em;
+    opacity: 0;
+    animation: fadeUp 1.1s ease forwards 1.15s;
+    text-align: right;
+  }
+
+  .line4 {
+    font-size: clamp(30px, 3.8vw, 48px);
+    margin-left: 22vw;
+    margin-top: 0.3em;
+    opacity: 0;
+    animation: fadeUp 1.1s ease forwards 1.45s;
+  }
+
+  .contact {
+    position: absolute;
+    bottom: 90px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 3;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.9s;
+  }
+
+  .contact a {
+    color: var(--cream);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245,241,232,0.4);
+    padding-bottom: 2px;
+    transition: border-color 0.3s ease;
+  }
+
+  .contact a:hover {
+    border-color: var(--gold);
+  }
+
+  .border-strip {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    display: flex;
+    z-index: 3;
+    border-top: 1px solid rgba(245,241,232,0.25);
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 2.1s;
+  }
+
+  .border-strip .unit {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .border-strip svg {
+    width: 22px;
+    height: 22px;
+    opacity: 0.55;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 640px) {
+    .line1 { margin-left: 0; }
+    .line2 { margin-left: 4vw; }
+    .line3 { margin-left: 6vw; text-align: left; }
+    .line4 { margin-left: 2vw; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .linen { animation: none; }
+    .nav, .marker, h1, .contact, .border-strip { animation: none; opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="linen"></div>
+
+  <div class="nav">
+    <div class="nav-name">ELIZABETH STRAIN</div>
+    <div class="nav-icon"><span></span><span></span><span></span></div>
+  </div>
+
+  <div class="marker"></div>
+
+  <div class="content">
+    <h1>
+      <div class="line1">for the</div>
+      <div class="line2">love of</div>
+      <div class="line3">things</div>
+      <div class="line4">done well.</div>
+    </h1>
+  </div>
+
+  <p class="contact">The site is being built &mdash; reach me at <a href="mailto:elizabethhstrainn@gmail.com">elizabethhstrainn@gmail.com</a></p>
+
+  <div class="border-strip" id="borderStrip"></div>
+</div>
+
+<script>
+  const strip = document.getElementById('borderStrip');
+  const unitWidth = 46;
+  const count = Math.ceil(window.innerWidth / unitWidth) + 2;
+  const sprig = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 22V10" stroke="#F5F1E8" stroke-width="1"/>
+      <path d="M12 14C12 14 6 12 6 6" stroke="#F5F1E8" stroke-width="1"/>
+      <path d="M12 14C12 14 18 12 18 6" stroke="#F5F1E8" stroke-width="1"/>
+      <circle cx="12" cy="6" r="2" fill="#C9B27E"/>
+    </svg>`;
+  for (let i = 0; i < count; i++) {
+    const div = document.createElement('div');
+    div.className = 'unit';
+    div.innerHTML = sprig;
+    strip.appendChild(div);
+  }
+</script>
+
+</body>
+</html>
