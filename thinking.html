@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thinking & POV · Elizabeth Strain</title>
+  <meta name="description" content="Journal and essays on art de vivre, deliberate branding, and thoughtful communications by Elizabeth Strain.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Thinking & POV · Elizabeth Strain">
+  <meta property="og:description" content="Journal and essays on art de vivre, deliberate branding, and thoughtful communications by Elizabeth Strain.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://elizabethstrain.com/thinking.html">
+  <meta property="og:image" content="https://elizabethstrain.com/images/elizabeth_portrait.jpg">
+  <meta property="og:site_name" content="Elizabeth Strain">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Thinking & POV · Elizabeth Strain">
+  <meta name="twitter:description" content="Journal and essays on art de vivre, deliberate branding, and thoughtful communications by Elizabeth Strain.">
+  <meta name="twitter:image" content="https://elizabethstrain.com/images/elizabeth_portrait.jpg">
+
+  <!-- Typography Imports -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;1,300&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-blue-linen: #8FA3B8;
+      --color-cool-cream: #F5F2EF;
+      --color-near-black: #1C1917;
+      --color-taupe: #A89D8F;
+      --color-gold: #8B6914;
+      --color-cornflower: #8B9FBB;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-script: 'Pinyon Script', cursive;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--color-cool-cream);
+      color: var(--color-near-black);
+      font-family: var(--font-sans);
+      font-weight: 300;
+    }
+
+    body {
+      opacity: 0;
+      transition: opacity 300ms ease;
+      position: relative;
+    }
+
+    body.page-loaded {
+      opacity: 1;
+    }
+
+    body.page-fading {
+      opacity: 0;
+    }
+
+    /* Paper texture */
+    .paper-texture {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 99;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)'/%3E%3C/svg%3E");
+    }
+
+    /* Custom Cursor */
+    @media (hover: hover) and (pointer: fine) {
+      * {
+        cursor: none !important;
+      }
+    }
+
+    .custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--color-gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                  height 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 0.2s ease;
+      will-change: transform;
+    }
+
+    .custom-cursor.cursor-active {
+      width: 22px;
+      height: 22px;
+    }
+
+    .custom-cursor.cursor-down {
+      width: 6px;
+      height: 6px;
+    }
+
+    .custom-cursor.cursor-light {
+      border-color: rgba(245, 242, 239, 0.9);
+    }
+
+    /* Header Bar */
+    .top-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 48px;
+      z-index: 50;
+      background: linear-gradient(180deg, rgba(245,242,239,0.95) 0%, rgba(245,242,239,0) 100%);
+    }
+
+    .brand-logo {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-near-black);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+
+    .brand-logo:hover {
+      color: var(--color-gold);
+    }
+
+    .hamburger {
+      position: fixed;
+      top: 24px;
+      right: 48px;
+      z-index: 400;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      width: 30px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: rgba(247,244,240,0.7);
+      transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+      transform-origin: center;
+    }
+
+    .interior-page .hamburger span {
+      background: rgba(28,25,23,0.6);
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(10px) rotate(45deg);
+      background: rgba(28,25,23,0.6);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-10px) rotate(-45deg);
+      background: rgba(28,25,23,0.6);
+    }
+
+    /* Moodboard Section — Full Width */
+    .moodboard-section {
+      width: 100%;
+      margin-top: 110px;
+      padding: 80px 0 20px;
+      position: relative;
+      border-top: 0.5px solid rgba(168, 157, 143, 0.35);
+    }
+
+    .moodboard-header {
+      max-width: 820px;
+      margin: 0 auto 48px;
+      padding: 0 32px;
+      text-align: center;
+    }
+
+    .moodboard-script {
+      font-family: var(--font-script);
+      font-size: 2.8rem;
+      color: var(--color-gold);
+      margin-bottom: 6px;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .moodboard-title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 2.5rem;
+      color: var(--color-near-black);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .moodboard-blurb {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.85;
+      color: rgba(28, 25, 23, 0.82);
+      max-width: 660px;
+      margin: 0 auto 28px;
+    }
+
+    .moodboard-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-near-black);
+      border: 0.5px solid rgba(28, 25, 23, 0.35);
+      border-radius: 100px;
+      padding: 9px 24px;
+      text-decoration: none;
+      transition: all 200ms ease;
+    }
+
+    .moodboard-btn:hover {
+      background: var(--color-near-black);
+      color: var(--color-cool-cream);
+      border-color: var(--color-near-black);
+    }
+
+    .moodboard-embed-container {
+      width: 100%;
+      padding: 0 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .pinterest-widget-wrapper {
+      width: 100%;
+      max-width: 1320px;
+      display: flex;
+      justify-content: center;
+      min-height: 480px;
+    }
+
+    .pinterest-widget-wrapper > span {
+      margin: 0 auto !important;
+      max-width: 100% !important;
+      border-radius: 6px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+    }
+
+    @media (max-width: 768px) {
+      .moodboard-section {
+        margin-top: 70px;
+        padding: 50px 0 10px;
+      }
+      .moodboard-header {
+        padding: 0 20px;
+        margin-bottom: 32px;
+      }
+      .moodboard-title {
+        font-size: 2rem;
+      }
+      .moodboard-blurb {
+        font-size: 15px;
+      }
+      .moodboard-embed-container {
+        padding: 0 12px;
+      }
+    }
+
+    /* Main Container */
+    .page-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 120px 32px 140px;
+      position: relative;
+    }
+
+    .journal-label-script {
+      font-family: var(--font-script);
+      font-size: 3rem;
+      color: var(--color-gold);
+      margin-bottom: 4px;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .page-header {
+      margin-bottom: 56px;
+    }
+
+    .page-title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 3rem;
+      color: var(--color-near-black);
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+
+    .header-rule {
+      height: 0.5px;
+      background-color: var(--color-taupe);
+      opacity: 0.45;
+      border: none;
+      width: 100%;
+    }
+
+    /* Journal Tile */
+    .journal-tiles-grid {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .journal-tile {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      padding: 24px 0 36px;
+      border-bottom: 0.5px solid rgba(168, 157, 143, 0.45);
+      transition: opacity 250ms ease;
+      cursor: pointer;
+    }
+
+    .journal-tile:hover {
+      opacity: 0.85;
+    }
+
+    .journal-tile-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .journal-category-tag {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-cornflower);
+      margin-bottom: 12px;
+    }
+
+    .journal-tile-title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 2rem;
+      color: var(--color-near-black);
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+      transition: color 200ms ease;
+    }
+
+    .journal-tile:hover .journal-tile-title {
+      color: var(--color-gold);
+    }
+
+    .journal-tile-teaser {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(28, 25, 23, 0.82);
+      margin-bottom: 16px;
+    }
+
+    .journal-tile-date {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--color-taupe);
+      letter-spacing: 0.04em;
+    }
+
+    /* Footer */
+    .site-footer {
+      width: 100%;
+      margin-top: 80px;
+      position: relative;
+    }
+
+    .footer-cream-zone {
+      background: #F5F2EF;
+      width: 100%;
+      height: 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-sig {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 3rem;
+      color: #8B6914;
+      white-space: nowrap;
+      line-height: 1;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 50%) rotate(-1.5deg);
+      z-index: 5;
+      user-select: none;
+      pointer-events: none;
+      filter: drop-shadow(0 0.5px 1px rgba(139, 105, 20, 0.25));
+    }
+
+    .footer-blue-zone {
+      background: #8FA3B8;
+      width: 100%;
+      padding: 48px 32px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-btns {
+      display: flex;
+      flex-direction: row;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(247, 244, 240, 0.9);
+      border: 0.5px solid rgba(247, 244, 240, 0.45);
+      border-radius: 100px;
+      padding: 8px 20px;
+      text-decoration: none;
+      transition: all 200ms ease;
+    }
+
+    .footer-btn:hover {
+      background: rgba(247, 244, 240, 0.15);
+      border-color: rgba(247, 244, 240, 0.8);
+      color: #F5F2EF;
+    }
+
+    .footer-copy {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(247, 244, 240, 0.45);
+    }
+
+    /* Navigation Overlay */
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-cool-cream);
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1), visibility 350ms;
+    }
+
+    .nav-overlay.open,
+    .nav-overlay.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav-overlay::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)'/%3E%3C/svg%3E");
+    }
+
+    .nav-links-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+      z-index: 310;
+      text-align: center;
+    }
+
+    .nav-link-item a {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 2.8rem;
+      color: var(--color-near-black);
+      text-decoration: none;
+      transition: color 200ms ease;
+      display: inline-block;
+    }
+
+    .nav-link-item a:hover {
+      color: var(--color-gold);
+    }
+
+    .nav-signature {
+      position: absolute;
+      bottom: 48px;
+      right: 56px;
+      font-family: var(--font-script);
+      font-size: 2.2rem;
+      color: var(--color-gold);
+      user-select: none;
+      z-index: 310;
+    }
+
+    @media (max-width: 768px) {
+      .top-header {
+        padding: 28px 24px;
+      }
+      .page-container {
+        padding: 100px 24px 80px;
+      }
+      .journal-tile {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .journal-tile-img-box {
+        height: 200px;
+      }
+      .hamburger {
+        top: 24px;
+        right: 24px;
+      }
+    }
+  </style>
+</head>
+<body class="interior-page">
+
+  <div class="paper-texture" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="top-header" id="header">
+    <a href="index.html" class="brand-logo" id="brand-logo">Elizabeth Strain</a>
+    <button type="button" class="hamburger" id="menu-open-btn" aria-label="Toggle Navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-container" id="thinking-page">
+    <header class="page-header">
+      <div class="journal-label-script" id="journal-mark">Journal</div>
+      <h1 class="page-title" id="thinking-title">Thinking & POV</h1>
+      <hr class="header-rule">
+    </header>
+
+    <!-- Published Pieces -->
+    <section class="journal-tiles-grid" id="journal-tiles">
+      <a href="paris-essay.html" class="journal-tile" id="tile-paris-essay">
+        <div class="journal-tile-content">
+          <span class="journal-category-tag">Personal Essay</span>
+          <h2 class="journal-tile-title">Notes from a Summer in Paris</h2>
+          <p class="journal-tile-teaser">On art de vivre, and what the French understand about brands that most marketers never will.</p>
+          <time class="journal-tile-date">Summer 2025</time>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <!-- Full-Width Moodboard Section -->
+  <section class="moodboard-section" id="moodboard-section">
+    <div class="moodboard-header">
+      <div class="moodboard-script" id="moodboard-mark">Atmosphere</div>
+      <h2 class="moodboard-title">Every good project starts with a moodboard.</h2>
+      <p class="moodboard-blurb">
+        Before words are chosen or brand architectures are structured, there is an intangible feeling—a quiet dialogue between texture, light, and aesthetic intention. A moodboard is the foundational instinct where every enduring visual world begins.
+      </p>
+      <a href="https://www.pinterest.com/elizabethcarolineee/currently-coveting/" target="_blank" rel="noopener noreferrer" class="moodboard-btn">
+        View on Pinterest ↗
+      </a>
+    </div>
+
+    <div class="moodboard-embed-container">
+      <div class="pinterest-widget-wrapper">
+        <a data-pin-do="embedBoard" 
+           data-pin-board-width="1200" 
+           data-pin-scale-height="540" 
+           data-pin-scale-width="190" 
+           href="https://www.pinterest.com/elizabethcarolineee/currently-coveting/">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two Zone Footer -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-cream-zone">
+      <span class="footer-sig">Elizabeth Strain</span>
+    </div>
+    <div class="footer-blue-zone">
+      <div class="footer-btns">
+        <a href="https://www.linkedin.com/in/elizabeth-strain/" target="_blank" rel="noopener noreferrer" class="footer-btn">LinkedIn</a>
+        <a href="https://www.instagram.com/elizabethhstrainn/" target="_blank" rel="noopener noreferrer" class="footer-btn">Instagram</a>
+        <a href="contact.html" class="footer-btn">Get in Touch</a>
+      </div>
+      <p class="footer-copy">Elizabeth Strain · © 2026</p>
+    </div>
+  </footer>
+
+  <!-- Fullscreen Navigation Overlay -->
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <ul class="nav-links-list" id="nav-links">
+      <li class="nav-link-item"><a href="about.html" id="link-about">About Elizabeth</a></li>
+      <li class="nav-link-item"><a href="projects.html" id="link-projects">Selected Projects</a></li>
+      <li class="nav-link-item"><a href="thinking.html" id="link-thinking">Thinking & POV</a></li>
+      <li class="nav-link-item"><a href="contact.html" id="link-contact">Contact</a></li>
+    </ul>
+    <div class="nav-signature" id="nav-signature">Elizabeth Strain</div>
+  </div>
+
+  <script>
+    // Page load & smooth page transitions
+    document.addEventListener('DOMContentLoaded', () => {
+      requestAnimationFrame(() => {
+        document.body.classList.add('page-loaded');
+      });
+
+      document.querySelectorAll('a').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:') && !href.startsWith('javascript:') && !link.hasAttribute('target')) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.classList.remove('page-loaded');
+            document.body.classList.add('page-fading');
+            setTimeout(() => {
+              window.location.href = href;
+            }, 300);
+          });
+        }
+      });
+    });
+
+    // Navigation Overlay Logic
+    const hamburger = document.querySelector('.hamburger');
+    const navOverlay = document.getElementById('navOverlay') || document.getElementById('nav-overlay');
+
+    function openNav() {
+      if (navOverlay) {
+        navOverlay.classList.add('open');
+        navOverlay.classList.add('is-active');
+        navOverlay.setAttribute('aria-hidden', 'false');
+      }
+      if (hamburger) hamburger.classList.add('active');
+    }
+
+    function closeNav() {
+      if (navOverlay) {
+        navOverlay.classList.remove('open');
+        navOverlay.classList.remove('is-active');
+        navOverlay.setAttribute('aria-hidden', 'true');
+      }
+      if (hamburger) hamburger.classList.remove('active');
+    }
+
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        if (hamburger.classList.contains('active')) {
+          closeNav();
+        } else {
+          openNav();
+        }
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navOverlay && (navOverlay.classList.contains('open') || navOverlay.classList.contains('is-active'))) {
+        closeNav();
+      }
+    });
+
+    // Custom Cursor tracking
+    (function() {
+      if (window.matchMedia('(hover: none)').matches) return;
+      const cursor = document.createElement('div');
+      cursor.id = 'cursor';
+      cursor.className = 'custom-cursor';
+      document.body.appendChild(cursor);
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let cursorX = mouseX;
+      let cursorY = mouseY;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      window.addEventListener('mousedown', () => {
+        cursor.classList.add('cursor-down');
+      });
+
+      window.addEventListener('mouseup', () => {
+        cursor.classList.remove('cursor-down');
+      });
+
+      function bindCursorHovers() {
+        const interactives = document.querySelectorAll('a, button, [role="button"], input, textarea, .journal-tile, .moodboard-btn');
+        interactives.forEach(el => {
+          el.addEventListener('mouseenter', () => cursor.classList.add('cursor-active'));
+          el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-active'));
+        });
+      }
+
+      function checkTheme() {
+        const el = document.elementFromPoint(mouseX, mouseY);
+        if (el && (el.closest('.blue-zone') || el.closest('.footer-blue-zone'))) {
+          cursor.classList.add('cursor-light');
+        } else {
+          cursor.classList.remove('cursor-light');
+        }
+      }
+
+      function render() {
+        cursorX += (mouseX - cursorX) * 0.35;
+        cursorY += (mouseY - cursorY) * 0.35;
+        cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+        checkTheme();
+        requestAnimationFrame(render);
+      }
+
+      requestAnimationFrame(render);
+      bindCursorHovers();
+    })();
+  </script>
+
+  <!-- Pinterest Official Widget Embed Script -->
+  <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+</body>
+</html>

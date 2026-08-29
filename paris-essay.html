@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes from a Summer in Paris · Elizabeth Strain</title>
+  <meta name="description" content="On art de vivre, and what the French understand about brands that most marketers never will. By Elizabeth Strain.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Notes from a Summer in Paris · Elizabeth Strain">
+  <meta property="og:description" content="On art de vivre, and what the French understand about brands that most marketers never will. By Elizabeth Strain.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://elizabethstrain.com/paris-essay.html">
+  <meta property="og:image" content="https://elizabethstrain.com/images/regenerated_image_1787442570109.jpg">
+  <meta property="og:site_name" content="Elizabeth Strain">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Notes from a Summer in Paris · Elizabeth Strain">
+  <meta name="twitter:description" content="On art de vivre, and what the French understand about brands that most marketers never will. By Elizabeth Strain.">
+  <meta name="twitter:image" content="https://elizabethstrain.com/images/regenerated_image_1787442570109.jpg">
+
+  <!-- Typography Imports -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;1,300&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-blue-linen: #8FA3B8;
+      --color-cool-cream: #F5F2EF;
+      --color-near-black: #1C1917;
+      --color-taupe: #A89D8F;
+      --color-gold: #8B6914;
+      --color-cornflower: #8B9FBB;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-script: 'Pinyon Script', cursive;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--color-cool-cream);
+      color: var(--color-near-black);
+      font-family: var(--font-sans);
+      font-weight: 300;
+    }
+
+    body {
+      opacity: 0;
+      transition: opacity 300ms ease;
+      position: relative;
+    }
+
+    body.page-loaded {
+      opacity: 1;
+    }
+
+    body.page-fading {
+      opacity: 0;
+    }
+
+    /* Paper texture */
+    .paper-texture {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 99;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)'/%3E%3C/svg%3E");
+    }
+
+    /* Custom Cursor */
+    @media (hover: hover) and (pointer: fine) {
+      * {
+        cursor: none !important;
+      }
+    }
+
+    .custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--color-gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                  height 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 0.2s ease;
+      will-change: transform;
+    }
+
+    .custom-cursor.cursor-active {
+      width: 22px;
+      height: 22px;
+    }
+
+    .custom-cursor.cursor-down {
+      width: 6px;
+      height: 6px;
+    }
+
+    .custom-cursor.cursor-light {
+      border-color: rgba(245, 242, 239, 0.9);
+    }
+
+    /* Top Navigation Bar */
+    .top-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 48px;
+      z-index: 50;
+      background: linear-gradient(180deg, rgba(245,242,239,0.95) 0%, rgba(245,242,239,0) 100%);
+    }
+
+    .brand-logo {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-near-black);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+
+    .brand-logo:hover {
+      color: var(--color-gold);
+    }
+
+    .hamburger {
+      position: fixed;
+      top: 24px;
+      right: 48px;
+      z-index: 400;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      width: 30px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: rgba(247,244,240,0.7);
+      transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+      transform-origin: center;
+    }
+
+    .interior-page .hamburger span {
+      background: rgba(28,25,23,0.6);
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(10px) rotate(45deg);
+      background: rgba(28,25,23,0.6);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-10px) rotate(-45deg);
+      background: rgba(28,25,23,0.6);
+    }
+
+    /* Essay Centered Article Container */
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 130px 24px 80px;
+      position: relative;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-taupe);
+      text-decoration: none;
+      margin-bottom: 32px;
+      transition: color 200ms ease;
+    }
+
+    .back-link:hover {
+      color: var(--color-gold);
+    }
+
+    .essay-meta-category {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-cornflower);
+      margin-bottom: 16px;
+    }
+
+    .essay-title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 2.8rem;
+      color: var(--color-near-black);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .essay-deck {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.15rem;
+      color: var(--color-taupe);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .essay-author {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--color-taupe);
+      margin-bottom: 36px;
+    }
+
+    .essay-divider {
+      height: 0.5px;
+      background-color: var(--color-taupe);
+      opacity: 0.45;
+      border: none;
+      margin-bottom: 40px;
+    }
+
+    /* Essay Prose Body */
+    .essay-prose p {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 2.0;
+      color: rgba(28, 25, 23, 0.82);
+      margin-bottom: 28px;
+    }
+
+    .essay-closing {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.1rem;
+      color: var(--color-taupe);
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    .site-footer {
+      width: 100%;
+      margin-top: 80px;
+      position: relative;
+    }
+
+    .footer-cream-zone {
+      background: #F5F2EF;
+      width: 100%;
+      height: 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-sig {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 3rem;
+      color: #8B6914;
+      white-space: nowrap;
+      line-height: 1;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 50%) rotate(-1.5deg);
+      z-index: 5;
+      user-select: none;
+      pointer-events: none;
+      filter: drop-shadow(0 0.5px 1px rgba(139, 105, 20, 0.25));
+    }
+
+    .footer-blue-zone {
+      background: #8FA3B8;
+      width: 100%;
+      padding: 48px 32px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-btns {
+      display: flex;
+      flex-direction: row;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(247, 244, 240, 0.9);
+      border: 0.5px solid rgba(247, 244, 240, 0.45);
+      border-radius: 100px;
+      padding: 8px 20px;
+      text-decoration: none;
+      transition: all 200ms ease;
+    }
+
+    .footer-btn:hover {
+      background: rgba(247, 244, 240, 0.15);
+      border-color: rgba(247, 244, 240, 0.8);
+      color: #F5F2EF;
+    }
+
+    .footer-copy {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(247, 244, 240, 0.45);
+    }
+
+    /* Navigation Overlay */
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-cool-cream);
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1), visibility 350ms;
+    }
+
+    .nav-overlay.open,
+    .nav-overlay.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav-overlay::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)'/%3E%3C/svg%3E");
+    }
+
+    .nav-links-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+      z-index: 310;
+      text-align: center;
+    }
+
+    .nav-link-item a {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 2.8rem;
+      color: var(--color-near-black);
+      text-decoration: none;
+      transition: color 200ms ease;
+      display: inline-block;
+    }
+
+    .nav-link-item a:hover {
+      color: var(--color-gold);
+    }
+
+    .nav-signature {
+      position: absolute;
+      bottom: 48px;
+      right: 56px;
+      font-family: var(--font-script);
+      font-size: 2.2rem;
+      color: var(--color-gold);
+      user-select: none;
+      z-index: 310;
+    }
+
+    @media (max-width: 768px) {
+      .essay-hero-wrapper {
+        height: 280px;
+        margin-top: 80px;
+      }
+      .top-header {
+        padding: 28px 24px;
+      }
+      .essay-title {
+        font-size: 2.2rem;
+      }
+      .hamburger {
+        top: 24px;
+        right: 24px;
+      }
+    }
+  </style>
+</head>
+<body class="interior-page">
+
+  <div class="paper-texture" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="top-header" id="header">
+    <a href="index.html" class="brand-logo" id="brand-logo">Elizabeth Strain</a>
+    <button type="button" class="hamburger" id="menu-open-btn" aria-label="Toggle Navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- Essay Centered Content Column -->
+  <main class="essay-container" id="essay-content">
+    <a href="thinking.html" class="back-link" id="back-link">← Back to Journal</a>
+
+    <div class="essay-meta-category">Personal Essay · Summer 2025</div>
+    <h1 class="essay-title">Notes from a Summer in Paris</h1>
+    <div class="essay-deck">On art de vivre, and what the French understand about brands that most marketers never will.</div>
+    <div class="essay-author">By Elizabeth Strain</div>
+
+    <hr class="essay-divider">
+
+    <article class="essay-prose">
+      <p>
+        I went to Paris the summer I was twenty-something with an internship at a family-owned natural wine company and a quiet suspicion that I was about to learn something I couldn't get in a classroom.
+      </p>
+      <p>
+        I was right. I just didn't expect the lesson to be about marketing.
+      </p>
+      <p>
+        The French have a phrase: art de vivre. The art of living. It sounds like a lifestyle concept, something you'd see on a mood board or a brand deck. But in Paris it isn't a concept at all. It's just Tuesday. It's the baker who has been making the same croissant for thirty years because he has no interest in making a different one. It's the restaurant that doesn't take reservations not because it's trendy but because it never occurred to them to change. It's the wine on the table at lunch, the patio that spills onto the street, the unhurried conversation that stretches past dark.
+      </p>
+      <p>
+        Nobody is performing any of it. That's the thing.
+      </p>
+      <p>
+        Working inside a small, family-led wine company that summer, I watched how they talked about their product. Or more accurately, how they didn't. There were no talking points. No brand pillars. No carefully crafted elevator pitch. There was just genuine pride in what they made and a quiet assumption that if you tasted it you would understand. The story wasn't separate from the thing. It was the thing.
+      </p>
+      <p>
+        Every corner of that city operated the same way. The boulangerie with the line out the door at 7am. The fromagerie where the owner knew every wheel by name. The architecture that didn't ask to be noticed but stopped you cold anyway. Paris is full of things that have never once tried to go viral and have been beloved for centuries.
+      </p>
+      <p>
+        I think about that a lot now.
+      </p>
+      <p>
+        The brands I'm most drawn to work this way. They don't explain themselves. They don't chase attention. They build something so considered, so genuinely good, that the story takes care of itself. They understand that the most powerful thing a brand can do is make people feel something real. Not manufacture a feeling and push it out into the world, but create the conditions for it to happen naturally.
+      </p>
+      <p class="essay-closing">
+        Art de vivre isn't a marketing strategy. But it might be the best one I've ever seen.
+      </p>
+    </article>
+  </main>
+
+  <!-- Two Zone Footer -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-cream-zone">
+      <span class="footer-sig">Elizabeth Strain</span>
+    </div>
+    <div class="footer-blue-zone">
+      <div class="footer-btns">
+        <a href="https://www.linkedin.com/in/elizabeth-strain/" target="_blank" rel="noopener noreferrer" class="footer-btn">LinkedIn</a>
+        <a href="https://www.instagram.com/elizabethhstrainn/" target="_blank" rel="noopener noreferrer" class="footer-btn">Instagram</a>
+        <a href="contact.html" class="footer-btn">Get in Touch</a>
+      </div>
+      <p class="footer-copy">Elizabeth Strain · © 2026</p>
+    </div>
+  </footer>
+
+  <!-- Fullscreen Navigation Overlay -->
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <ul class="nav-links-list" id="nav-links">
+      <li class="nav-link-item"><a href="about.html" id="link-about">About Elizabeth</a></li>
+      <li class="nav-link-item"><a href="projects.html" id="link-projects">Selected Projects</a></li>
+      <li class="nav-link-item"><a href="thinking.html" id="link-thinking">Thinking & POV</a></li>
+      <li class="nav-link-item"><a href="contact.html" id="link-contact">Contact</a></li>
+    </ul>
+    <div class="nav-signature" id="nav-signature">Elizabeth Strain</div>
+  </div>
+
+  <script>
+    // Page load & smooth page transitions
+    document.addEventListener('DOMContentLoaded', () => {
+      requestAnimationFrame(() => {
+        document.body.classList.add('page-loaded');
+      });
+
+      document.querySelectorAll('a').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:') && !href.startsWith('javascript:') && !link.hasAttribute('target')) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.classList.remove('page-loaded');
+            document.body.classList.add('page-fading');
+            setTimeout(() => {
+              window.location.href = href;
+            }, 300);
+          });
+        }
+      });
+    });
+
+    // Navigation Overlay Logic
+    const hamburger = document.querySelector('.hamburger');
+    const navOverlay = document.getElementById('navOverlay') || document.getElementById('nav-overlay');
+
+    function openNav() {
+      if (navOverlay) {
+        navOverlay.classList.add('open');
+        navOverlay.classList.add('is-active');
+        navOverlay.setAttribute('aria-hidden', 'false');
+      }
+      if (hamburger) hamburger.classList.add('active');
+    }
+
+    function closeNav() {
+      if (navOverlay) {
+        navOverlay.classList.remove('open');
+        navOverlay.classList.remove('is-active');
+        navOverlay.setAttribute('aria-hidden', 'true');
+      }
+      if (hamburger) hamburger.classList.remove('active');
+    }
+
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        if (hamburger.classList.contains('active')) {
+          closeNav();
+        } else {
+          openNav();
+        }
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navOverlay && (navOverlay.classList.contains('open') || navOverlay.classList.contains('is-active'))) {
+        closeNav();
+      }
+    });
+
+    // Custom Cursor tracking
+    (function() {
+      if (window.matchMedia('(hover: none)').matches) return;
+      const cursor = document.createElement('div');
+      cursor.id = 'cursor';
+      cursor.className = 'custom-cursor';
+      document.body.appendChild(cursor);
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let cursorX = mouseX;
+      let cursorY = mouseY;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      window.addEventListener('mousedown', () => {
+        cursor.classList.add('cursor-down');
+      });
+
+      window.addEventListener('mouseup', () => {
+        cursor.classList.remove('cursor-down');
+      });
+
+      function bindCursorHovers() {
+        const interactives = document.querySelectorAll('a, button, [role="button"], input, textarea');
+        interactives.forEach(el => {
+          el.addEventListener('mouseenter', () => cursor.classList.add('cursor-active'));
+          el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-active'));
+        });
+      }
+
+      function checkTheme() {
+        const el = document.elementFromPoint(mouseX, mouseY);
+        if (el && (el.closest('.blue-zone') || el.closest('.footer-blue-zone'))) {
+          cursor.classList.add('cursor-light');
+        } else {
+          cursor.classList.remove('cursor-light');
+        }
+      }
+
+      function render() {
+        cursorX += (mouseX - cursorX) * 0.35;
+        cursorY += (mouseY - cursorY) * 0.35;
+        cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+        checkTheme();
+        requestAnimationFrame(render);
+      }
+
+      requestAnimationFrame(render);
+      bindCursorHovers();
+    })();
+  </script>
+</body>
+</html>
