@@ -85,26 +85,39 @@
       left: 0;
       width: 16px;
       height: 16px;
-      border: 1px solid rgba(245, 242, 239, 0.9);
+      border: 1.5px solid var(--color-cool-cream, #F5F2EF);
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 0, 0, 0.15);
       border-radius: 50%;
-      pointer-events: none;
-      z-index: 99999;
+      pointer-events: none !important;
+      z-index: 999999;
+      opacity: 0;
       transform: translate(-50%, -50%);
       transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
                   height 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
-                  border-color 0.2s ease;
+                  border-color 0.2s ease,
+                  box-shadow 0.2s ease,
+                  opacity 0.2s ease;
       will-change: transform;
     }
 
+    .custom-cursor.cursor-visible {
+      opacity: 1;
+    }
+
     .custom-cursor.cursor-active {
-      width: 22px;
-      height: 22px;
-      border-color: var(--color-gold);
+      width: 24px;
+      height: 24px;
+      border-color: var(--color-gold, #8B6914);
     }
 
     .custom-cursor.cursor-down {
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
+    }
+
+    .custom-cursor.cursor-light {
+      border-color: var(--color-cool-cream, #F5F2EF) !important;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.25);
     }
 
     /* "Elizabeth Strain" top left */
@@ -452,10 +465,25 @@
       let mouseY = window.innerHeight / 2;
       let cursorX = mouseX;
       let cursorY = mouseY;
+      let hasMoved = false;
 
       window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+        if (!hasMoved) {
+          hasMoved = true;
+          cursorX = mouseX;
+          cursorY = mouseY;
+          cursor.classList.add('cursor-visible');
+        }
+      });
+
+      document.addEventListener('mouseenter', () => {
+        if (hasMoved) cursor.classList.add('cursor-visible');
+      });
+
+      document.addEventListener('mouseleave', () => {
+        cursor.classList.remove('cursor-visible');
       });
 
       window.addEventListener('mousedown', () => {
@@ -467,7 +495,7 @@
       });
 
       function bindCursorHovers() {
-        const interactives = document.querySelectorAll('a, button, [role="button"], input, textarea');
+        const interactives = document.querySelectorAll('a, button, [role="button"], input, textarea, .nav-item');
         interactives.forEach(el => {
           el.addEventListener('mouseenter', () => cursor.classList.add('cursor-active'));
           el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-active'));

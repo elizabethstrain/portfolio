@@ -98,29 +98,38 @@
       left: 0;
       width: 16px;
       height: 16px;
-      border: 1px solid var(--color-gold);
+      border: 1.5px solid var(--color-gold, #8B6914);
+      box-shadow: 0 0 1px rgba(28, 25, 23, 0.4);
       border-radius: 50%;
-      pointer-events: none;
-      z-index: 99999;
+      pointer-events: none !important;
+      z-index: 999999;
+      opacity: 0;
       transform: translate(-50%, -50%);
       transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
                   height 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
-                  border-color 0.2s ease;
+                  border-color 0.2s ease,
+                  box-shadow 0.2s ease,
+                  opacity 0.2s ease;
       will-change: transform;
     }
 
+    .custom-cursor.cursor-visible {
+      opacity: 1;
+    }
+
     .custom-cursor.cursor-active {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
     }
 
     .custom-cursor.cursor-down {
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
     }
 
     .custom-cursor.cursor-light {
-      border-color: rgba(245, 242, 239, 0.9);
+      border-color: var(--color-cool-cream, #F5F2EF) !important;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.25);
     }
 
     /* Top Navigation Bar */
@@ -1088,10 +1097,25 @@
       let mouseY = window.innerHeight / 2;
       let cursorX = mouseX;
       let cursorY = mouseY;
+      let hasMoved = false;
 
       window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+        if (!hasMoved) {
+          hasMoved = true;
+          cursorX = mouseX;
+          cursorY = mouseY;
+          cursor.classList.add('cursor-visible');
+        }
+      });
+
+      document.addEventListener('mouseenter', () => {
+        if (hasMoved) cursor.classList.add('cursor-visible');
+      });
+
+      document.addEventListener('mouseleave', () => {
+        cursor.classList.remove('cursor-visible');
       });
 
       window.addEventListener('mousedown', () => {
@@ -1110,9 +1134,38 @@
         });
       }
 
+      function isDarkUnderCursor(el) {
+        if (!el) return false;
+        if (el.tagName === 'IMG' || el.tagName === 'PICTURE' || el.tagName === 'FIGURE' ||
+            el.closest('img, picture, figure, .hero-img-col, .person-img-col, .hover-img, .modal-visual-col, .modal-visual-img, .photo-card, [style*="background-image"]')) {
+          return true;
+        }
+        if (el.closest('.blue-zone, .footer-blue-zone, .nav-overlay, .modal-overlay, .modal-drawer, [data-theme="dark"], .dark-bg, .bg-dark')) {
+          return true;
+        }
+        let curr = el;
+        while (curr && curr !== document.body && curr !== document.documentElement) {
+          const style = window.getComputedStyle(curr);
+          const bg = style.backgroundColor;
+          if (bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)') {
+            const match = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+            if (match) {
+              const r = parseInt(match[1], 10);
+              const g = parseInt(match[2], 10);
+              const b = parseInt(match[3], 10);
+              const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+              if (lum < 140) return true;
+              if (lum >= 140) return false;
+            }
+          }
+          curr = curr.parentElement;
+        }
+        return false;
+      }
+
       function checkTheme() {
         const el = document.elementFromPoint(mouseX, mouseY);
-        if (el && (el.closest('.blue-zone') || el.closest('.footer-blue-zone'))) {
+        if (el && isDarkUnderCursor(el)) {
           cursor.classList.add('cursor-light');
         } else {
           cursor.classList.remove('cursor-light');
