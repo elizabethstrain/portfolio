@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #0d131a;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      font-family: 'Inter', sans-serif;
+      color: #1a202c;
+    }
+    .board-container {
+      width: 100%;
+      max-width: 860px;
+      background-color: #F8F6F2;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .header-banner {
+      background-color: #0E1B2E;
+      color: #F8F6F2;
+      text-align: center;
+      padding: 48px 24px 40px;
+      border-bottom: 2px solid #C5A880;
+    }
+    .header-est {
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(248, 246, 242, 0.7);
+      margin-bottom: 14px;
+      font-weight: 300;
+    }
+    .header-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 42px;
+      letter-spacing: 0.14em;
+      font-weight: 400;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .header-sub {
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #C5A880;
+      margin-bottom: 22px;
+      font-weight: 400;
+    }
+    .header-offices {
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(248, 246, 242, 0.55);
+      font-weight: 300;
+    }
+    .board-body {
+      padding: 44px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .section-title {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #8C827A;
+      margin-bottom: 18px;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(140, 130, 122, 0.25);
+      padding-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .section-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: #8C827A;
+    }
+    /* Identity */
+    .identity-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    .logo-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(0,0,0,0.06);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 130px;
+    }
+    .logo-card-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 26px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0E1B2E;
+      font-weight: 500;
+    }
+    .logo-card-sub {
+      font-size: 8px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #8C827A;
+      margin-top: 4px;
+    }
+    .logo-monogram {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 40px;
+      letter-spacing: 0.1em;
+      color: #0E1B2E;
+      line-height: 1;
+    }
+    .identity-notes {
+      font-size: 12px;
+      color: #4A5568;
+      line-height: 1.7;
+    }
+    .identity-note-item {
+      margin-bottom: 12px;
+    }
+    .identity-note-item strong {
+      display: block;
+      color: #0E1B2E;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    /* Palette */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    .swatch {
+      height: 90px;
+      border-radius: 2px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .swatch-name {
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .swatch-hex {
+      font-family: monospace;
+      opacity: 0.8;
+      font-size: 8.5px;
+      margin-top: 2px;
+    }
+    .swatch-1 { background-color: #0E1B2E; color: #FFFFFF; }
+    .swatch-2 { background-color: #4A5868; color: #FFFFFF; }
+    .swatch-3 { background-color: #C5A880; color: #FFFFFF; }
+    .swatch-4 { background-color: #E2DBD2; color: #1A202C; }
+    .swatch-5 { background-color: #F8F6F2; color: #1A202C; border: 1px solid #E2DBD2; }
+    /* Typography */
+    .type-specimen {
+      background: #FFFFFF;
+      padding: 24px 28px;
+      border: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      padding-bottom: 12px;
+    }
+    .type-sample-serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 24px;
+      color: #0E1B2E;
+      letter-spacing: 0.04em;
+    }
+    .type-sample-sans {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #0E1B2E;
+      font-weight: 500;
+    }
+    .type-sample-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #4A5568;
+    }
+    .type-label {
+      font-size: 9.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #8C827A;
+    }
+    /* Who We Are */
+    .statement-box {
+      background-color: #0E1B2E;
+      color: #F8F6F2;
+      padding: 32px 36px;
+      display: grid;
+      grid-template-columns: 1.1fr 1.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .statement-quote {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 23px;
+      line-height: 1.35;
+      color: #FFFFFF;
+      border-right: 1px solid rgba(197, 168, 128, 0.4);
+      padding-right: 24px;
+    }
+    .statement-text {
+      font-size: 12.5px;
+      line-height: 1.75;
+      color: rgba(248, 246, 242, 0.82);
+      font-weight: 300;
+    }
+    /* Three Columns */
+    .three-col-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .pillar-card {
+      background: #FFFFFF;
+      padding: 24px 20px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .pillar-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      color: #0E1B2E;
+      margin-bottom: 8px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .pillar-desc {
+      font-size: 11.5px;
+      line-height: 1.7;
+      color: #4A5568;
+      font-weight: 300;
+    }
+    /* Footer */
+    .board-footer {
+      background: #0E1B2E;
+      color: rgba(248, 246, 242, 0.6);
+      text-align: center;
+      padding: 24px;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(197, 168, 128, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="board-container">
+    <header class="header-banner">
+      <div class="header-est">ESTABLISHED 1991 · ATLANTA</div>
+      <h1 class="header-title">HARRISON DESIGN</h1>
+      <div class="header-sub">B R A N D   B O O K</div>
+      <div class="header-offices">ATLANTA · LOS ANGELES · NAPLES · SANTA BARBARA · ST. SIMONS · WASHINGTON D.C.</div>
+    </header>
+
+    <div class="board-body">
+      <!-- Identity Section -->
+      <section>
+        <div class="section-title">
+          <span>Identity &amp; Marks</span>
+          <span class="section-num">01</span>
+        </div>
+        <div class="identity-grid">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="logo-card">
+              <div class="logo-card-title">HARRISON DESIGN</div>
+              <div class="logo-card-sub">Architecture · Interior Design · Landscape</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="logo-card" style="padding: 20px 12px;">
+                <div class="logo-card-title" style="font-size: 16px; line-height: 1.2;">HARRISON<br>DESIGN</div>
+                <div class="logo-card-sub" style="font-size: 6.5px;">Stacked</div>
+              </div>
+              <div class="logo-card" style="padding: 20px 12px;">
+                <div class="logo-monogram">HH</div>
+                <div class="logo-card-sub" style="font-size: 6.5px;">Icon / Social</div>
+              </div>
+            </div>
+          </div>
+          <div class="identity-notes">
+            <div class="identity-note-item">
+              <strong>Main Wordmark</strong>
+              Primary mark across print, signage, and formal client touchpoints. Disciplines sit beneath the wordmark in secondary tracking.
+            </div>
+            <div class="identity-note-item">
+              <strong>Stacked Mark</strong>
+              Reserved for square or constrained formats — signage, sub-roots, and collateral where the horizontal lockup would scale down too small.
+            </div>
+            <div class="identity-note-item">
+              <strong>Monogram Icon</strong>
+              The single-letter mark for profile avatars and digital social applications where the full wordmark would compete with the frame.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Color Palette -->
+      <section>
+        <div class="section-title">
+          <span>Architectural Palette</span>
+          <span class="section-num">02</span>
+        </div>
+        <div class="palette-grid">
+          <div class="swatch swatch-1">
+            <span class="swatch-name">Heritage Navy</span>
+            <span class="swatch-hex">#0E1B2E</span>
+          </div>
+          <div class="swatch swatch-2">
+            <span class="swatch-name">Slate Gray</span>
+            <span class="swatch-hex">#4A5868</span>
+          </div>
+          <div class="swatch swatch-3">
+            <span class="swatch-name">Ochre Gold</span>
+            <span class="swatch-hex">#C5A880</span>
+          </div>
+          <div class="swatch swatch-4">
+            <span class="swatch-name">Limestone</span>
+            <span class="swatch-hex">#E2DBD2</span>
+          </div>
+          <div class="swatch swatch-5">
+            <span class="swatch-name">Parchment</span>
+            <span class="swatch-hex">#F8F6F2</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography -->
+      <section>
+        <div class="section-title">
+          <span>Typography System</span>
+          <span class="section-num">03</span>
+        </div>
+        <div class="type-specimen">
+          <div class="type-row">
+            <div>
+              <div class="type-label">Title / Display</div>
+              <div class="type-sample-serif">Design Rooted in Place</div>
+            </div>
+            <div class="type-label">Cormorant Garamond</div>
+          </div>
+          <div class="type-row">
+            <div>
+              <div class="type-label">Subhead / Callout</div>
+              <div class="type-sample-sans">CLASSICAL, WARM &amp; PRECISE</div>
+            </div>
+            <div class="type-label">Inter Medium · 0.16em</div>
+          </div>
+          <div class="type-row" style="border-bottom: none; padding-bottom: 0;">
+            <div>
+              <div class="type-label">Body Text</div>
+              <div class="type-sample-body">Section heads &amp; pull quotes set in classical proportions, balancing historical lineage with modern clarity.</div>
+            </div>
+            <div class="type-label">Inter Light · 1.7 line height</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Who We Are -->
+      <section>
+        <div class="section-title">
+          <span>Who We Are</span>
+          <span class="section-num">04</span>
+        </div>
+        <div class="statement-box">
+          <div class="statement-quote">
+            "Design rooted in classical principles, responsive to place, and built to endure."
+          </div>
+          <div class="statement-text">
+            Founded in Atlanta in 1991, Harrison Design is one of the nation's premier full-service design firms in the United States. With six offices across the country, the firm combines the depth of a national practice with the attentiveness of a studio deeply rooted in each region's heritage. A comprehensive multi-disciplinary practice, Harrison Design offers architecture, interior design, and landscape architecture under one roof.
+          </div>
+        </div>
+      </section>
+
+      <!-- What We Do -->
+      <section>
+        <div class="section-title">
+          <span>Disciplines &amp; Practice</span>
+          <span class="section-num">05</span>
+        </div>
+        <div class="three-col-grid">
+          <div class="pillar-card">
+            <div class="pillar-title">Architecture</div>
+            <div class="pillar-desc">High-end residential design is the core of the practice. Rooted in classical principles, each residence responds to its surroundings and client traditions.</div>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-title">Interiors</div>
+            <div class="pillar-desc">Our interior designers create custom environments that seamlessly integrate architectural features, custom furniture, and art curation.</div>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-title">Landscape</div>
+            <div class="pillar-desc">Site-sensitive landscape architecture uniting structure with terrain, celebrating native flora and timeless outdoor rooms.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tone & Voice -->
+      <section>
+        <div class="section-title">
+          <span>Tone &amp; Voice</span>
+          <span class="section-num">06</span>
+        </div>
+        <div class="three-col-grid">
+          <div class="pillar-card">
+            <div class="pillar-title">Authoritative</div>
+            <div class="pillar-desc">Thirty years of demonstrated expertise across architecture, interiors, and landscapes. Statements are understated, grounded in craft, and retain humble authority.</div>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-title">Warm &amp; Client-Centered</div>
+            <div class="pillar-desc">Every project begins with listening. Copy reflects deep respect for client visions, way of life, collaboration, personal and warm tone.</div>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-title">Classical</div>
+            <div class="pillar-desc">Drawing on history without being restrained by it. Language conveys longevity, craftsmanship, and timeless residential standards.</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="board-footer">
+      Honored with over 50 Design Awards, two Palladio Awards, and an Arthur Ross Award · Harrison Design · Est. 1991
+    </footer>
+  </div>
+</body>
+</html>

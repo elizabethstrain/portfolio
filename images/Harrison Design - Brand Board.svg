@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 2400" width="1200" height="2400">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap');
+      .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+      .sans { font-family: 'Inter', Helvetica, sans-serif; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="2400" fill="#F8F6F2" />
+
+  <!-- Navy Header Banner -->
+  <rect width="1200" height="340" fill="#0E1B2E" />
+  <line x1="0" y1="340" x2="1200" y2="340" stroke="#C5A880" stroke-width="3" />
+
+  <text x="600" y="90" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.7" class="sans" font-size="14" letter-spacing="4" font-weight="300">ESTABLISHED 1991 · ATLANTA</text>
+  <text x="600" y="185" text-anchor="middle" fill="#FFFFFF" class="serif" font-size="64" letter-spacing="6" font-weight="500">HARRISON DESIGN</text>
+  <text x="600" y="240" text-anchor="middle" fill="#C5A880" class="sans" font-size="14" letter-spacing="6" font-weight="400">B R A N D   B O O K</text>
+  <text x="600" y="295" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.55" class="sans" font-size="12" letter-spacing="3" font-weight="300">ATLANTA · LOS ANGELES · NAPLES · SANTA BARBARA · ST. SIMONS · WASHINGTON D.C.</text>
+
+  <!-- Section 01: Identity -->
+  <g transform="translate(80, 400)">
+    <text x="0" y="0" fill="#8C827A" class="sans" font-size="13" letter-spacing="3" font-weight="600">IDENTITY &amp; MARKS</text>
+    <text x="1040" y="0" text-anchor="end" fill="#8C827A" class="serif" font-size="18" font-style="italic">01</text>
+    <line x1="0" y1="15" x2="1040" y2="15" stroke="#8C827A" stroke-opacity="0.25" stroke-width="1" />
+
+    <!-- Left Box: Logos -->
+    <rect x="0" y="35" width="500" height="120" fill="#FFFFFF" stroke="#E2DBD2" stroke-width="1" rx="2" />
+    <text x="250" y="95" text-anchor="middle" fill="#0E1B2E" class="serif" font-size="32" letter-spacing="4" font-weight="500">HARRISON DESIGN</text>
+    <text x="250" y="122" text-anchor="middle" fill="#8C827A" class="sans" font-size="8.5" letter-spacing="3">ARCHITECTURE · INTERIORS · LANDSCAPE</text>
+
+    <!-- Stacked & Icon row -->
+    <rect x="0" y="170" width="240" height="100" fill="#FFFFFF" stroke="#E2DBD2" stroke-width="1" rx="2" />
+    <text x="120" y="215" text-anchor="middle" fill="#0E1B2E" class="serif" font-size="20" letter-spacing="2" font-weight="500">HARRISON</text>
+    <text x="120" y="238" text-anchor="middle" fill="#0E1B2E" class="serif" font-size="20" letter-spacing="2" font-weight="500">DESIGN</text>
+
+    <rect x="260" y="170" width="240" height="100" fill="#FFFFFF" stroke="#E2DBD2" stroke-width="1" rx="2" />
+    <text x="380" y="235" text-anchor="middle" fill="#0E1B2E" class="serif" font-size="48" letter-spacing="2" font-weight="500">HH</text>
+
+    <!-- Right Box: Notes -->
+    <g transform="translate(540, 45)">
+      <text x="0" y="10" fill="#0E1B2E" class="sans" font-size="12" letter-spacing="1.5" font-weight="600">MAIN WORDMARK</text>
+      <text x="0" y="32" fill="#4A5568" class="sans" font-size="12" font-weight="300">Primary mark across all official print, signage, and publication touchpoints.</text>
+
+      <text x="0" y="85" fill="#0E1B2E" class="sans" font-size="12" letter-spacing="1.5" font-weight="600">STACKED MARK</text>
+      <text x="0" y="107" fill="#4A5568" class="sans" font-size="12" font-weight="300">Used in constrained or square formats where horizontal scale is restricted.</text>
+
+      <text x="0" y="160" fill="#0E1B2E" class="sans" font-size="12" letter-spacing="1.5" font-weight="600">MONOGRAM / ICON</text>
+      <text x="0" y="182" fill="#4A5568" class="sans" font-size="12" font-weight="300">Single-letter and twin monogram for avatars, favicons, and digital profiles.</text>
+    </g>
+  </g>
+
+  <!-- Section 02: Palette -->
+  <g transform="translate(80, 730)">
+    <text x="0" y="0" fill="#8C827A" class="sans" font-size="13" letter-spacing="3" font-weight="600">ARCHITECTURAL PALETTE</text>
+    <text x="1040" y="0" text-anchor="end" fill="#8C827A" class="serif" font-size="18" font-style="italic">02</text>
+    <line x1="0" y1="15" x2="1040" y2="15" stroke="#8C827A" stroke-opacity="0.25" stroke-width="1" />
+
+    <g transform="translate(0, 35)">
+      <!-- Swatch 1 -->
+      <rect x="0" y="0" width="192" height="95" fill="#0E1B2E" rx="2" />
+      <text x="15" y="65" fill="#FFFFFF" class="sans" font-size="11" font-weight="600">HERITAGE NAVY</text>
+      <text x="15" y="82" fill="#FFFFFF" fill-opacity="0.7" class="sans" font-size="10">#0E1B2E</text>
+
+      <!-- Swatch 2 -->
+      <rect x="212" y="0" width="192" height="95" fill="#4A5868" rx="2" />
+      <text x="227" y="65" fill="#FFFFFF" class="sans" font-size="11" font-weight="600">SLATE GRAY</text>
+      <text x="227" y="82" fill="#FFFFFF" fill-opacity="0.7" class="sans" font-size="10">#4A5868</text>
+
+      <!-- Swatch 3 -->
+      <rect x="424" y="0" width="192" height="95" fill="#C5A880" rx="2" />
+      <text x="439" y="65" fill="#FFFFFF" class="sans" font-size="11" font-weight="600">OCHRE GOLD</text>
+      <text x="439" y="82" fill="#FFFFFF" fill-opacity="0.7" class="sans" font-size="10">#C5A880</text>
+
+      <!-- Swatch 4 -->
+      <rect x="636" y="0" width="192" height="95" fill="#E2DBD2" rx="2" />
+      <text x="651" y="65" fill="#1A202C" class="sans" font-size="11" font-weight="600">LIMESTONE</text>
+      <text x="651" y="82" fill="#4A5568" class="sans" font-size="10">#E2DBD2</text>
+
+      <!-- Swatch 5 -->
+      <rect x="848" y="0" width="192" height="95" fill="#F8F6F2" stroke="#E2DBD2" stroke-width="1" rx="2" />
+      <text x="863" y="65" fill="#1A202C" class="sans" font-size="11" font-weight="600">PARCHMENT</text>
+      <text x="863" y="82" fill="#4A5568" class="sans" font-size="10">#F8F6F2</text>
+    </g>
+  </g>
+
+  <!-- Section 03: Typography -->
+  <g transform="translate(80, 930)">
+    <text x="0" y="0" fill="#8C827A" class="sans" font-size="13" letter-spacing="3" font-weight="600">TYPOGRAPHY SYSTEM</text>
+    <text x="1040" y="0" text-anchor="end" fill="#8C827A" class="serif" font-size="18" font-style="italic">03</text>
+    <line x1="0" y1="15" x2="1040" y2="15" stroke="#8C827A" stroke-opacity="0.25" stroke-width="1" />
+
+    <rect x="0" y="35" width="1040" height="140" fill="#FFFFFF" stroke="#E2DBD2" stroke-width="1" rx="2" />
+    <g transform="translate(30, 75)">
+      <text x="0" y="0" fill="#0E1B2E" class="serif" font-size="32">Design Rooted in Place</text>
+      <text x="1040" y="-5" text-anchor="end" fill="#8C827A" class="sans" font-size="11" letter-spacing="1.5">DISPLAY / SERIF</text>
+
+      <line x1="0" y1="20" x2="980" y2="20" stroke="#E2DBD2" stroke-width="1" />
+
+      <text x="0" y="50" fill="#0E1B2E" class="sans" font-size="14" letter-spacing="2.5" font-weight="600">CLASSICAL, WARM &amp; PRECISE</text>
+      <text x="1040" y="50" text-anchor="end" fill="#8C827A" class="sans" font-size="11" letter-spacing="1.5">HEADINGS &amp; PULL QUOTES</text>
+    </g>
+  </g>
+
+  <!-- Section 04: Who We Are -->
+  <g transform="translate(80, 1170)">
+    <text x="0" y="0" fill="#8C827A" class="sans" font-size="13" letter-spacing="3" font-weight="600">WHO WE ARE</text>
+    <text x="1040" y="0" text-anchor="end" fill="#8C827A" class="serif" font-size="18" font-style="italic">04</text>
+    <line x1="0" y1="15" x2="1040" y2="15" stroke="#8C827A" stroke-opacity="0.25" stroke-width="1" />
+
+    <rect x="0" y="35" width="1040" height="200" fill="#0E1B2E" rx="2" />
+    <g transform="translate(40, 75)">
+      <!-- Quote -->
+      <text x="0" y="20" fill="#FFFFFF" class="serif" font-size="24" font-style="italic">"Design rooted in classical principles,</text>
+      <text x="0" y="54" fill="#FFFFFF" class="serif" font-size="24" font-style="italic">responsive to place, and built</text>
+      <text x="0" y="88" fill="#FFFFFF" class="serif" font-size="24" font-style="italic">to endure."</text>
+
+      <line x1="420" y1="0" x2="420" y2="120" stroke="#C5A880" stroke-opacity="0.4" stroke-width="1" />
+
+      <!-- Paragraph -->
+      <g transform="translate(450, 0)">
+        <text x="0" y="15" fill="#F8F6F2" fill-opacity="0.85" class="sans" font-size="13" font-weight="300">Founded in Atlanta in 1991, Harrison Design is one of the nation's premier</text>
+        <text x="0" y="38" fill="#F8F6F2" fill-opacity="0.85" class="sans" font-size="13" font-weight="300">full-service design firms. With six offices across the country, the firm combines</text>
+        <text x="0" y="61" fill="#F8F6F2" fill-opacity="0.85" class="sans" font-size="13" font-weight="300">the depth of a national practice with the attentiveness of a regional studio.</text>
+        <text x="0" y="84" fill="#F8F6F2" fill-opacity="0.85" class="sans" font-size="13" font-weight="300">Offering architecture, interior design, and landscape architecture under one roof.</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Section 05: What We Do -->
+  <g transform="translate(80, 1470)">
+    <text x="0" y="0" fill="#8C827A" class="sans" font-size="13" letter-spacing="3" font-weight="600">DISCIPLINES &amp; PRACTICE</text>
+    <text x="1040" y="0" text-anchor="end" fill="#8C827A" class="serif" font-size="18" font-style="italic">05</text>
+    <line x1="0" y1="15" x2="1040" y2="15" stroke="#8C827A" stroke-opacity="0.25" stroke-width="1" />
+
+    <g transform="translate(0, 35)">
+      <rect x="0" y="0" width="326" height="160" fill="#FFFFFF" stroke="#E2DBD2" stroke-width="1" rx="2" />
+      <text x="25" y="40" fill="#0E1B2E" class="serif" font-size="22" font-weight="600">Architecture</text>
+      <text x="25" y="72" fill="#4A5568" class="sans" font-size="12" font-weight="300">High-end residential design is the core</text>
+      <text x="25" y="94" fill="#4A5568" class="sans" font-size="12" font-weight="300">of the practice. Rooted in classical</text>
+      <text x="25" y="116" fill="#4A5568" class="sans" font-size="12" font-weight="300">principles, responsive to heritage.</text>
+
+      <rect x="356" y="0" width="326" height="160" fill="#FFFFFF" stroke="#E2DBD2" stroke-width="1" rx="2" />
+      <text x="381" y="40" fill="#0E1B2E" class="serif" font-size="22" font-weight="600">Interiors</text>
+      <text x="381" y="72" fill="#4A5568" class="sans" font-size="12" font-weight="300">Custom environments seamlessly</text>
+      <text x="381" y="94" fill="#4A5568" class="sans" font-size="12" font-weight="300">integrating architectural details,</text>
+      <text x="381" y="116" fill="#4A5568" class="sans" font-size="12" font-weight="300">bespoke furniture, and art curation.</text>
+
+      <rect x="712" y="0" width="326" height="160" fill="#FFFFFF" stroke="#E2DBD2" stroke-width="1" rx="2" />
+      <text x="737" y="40" fill="#0E1B2E" class="serif" font-size="22" font-weight="600">Landscape</text>
+      <text x="737" y="72" fill="#4A5568" class="sans" font-size="12" font-weight="300">Site-sensitive landscape architecture</text>
+      <text x="737" y="94" fill="#4A5568" class="sans" font-size="12" font-weight="300">uniting structure with native terrain</text>
+      <text x="737" y="116" fill="#4A5568" class="sans" font-size="12" font-weight="300">and timeless outdoor rooms.</text>
+    </g>
+  </g>
+
+  <!-- Section 06: Tone & Voice -->
+  <g transform="translate(80, 1730)">
+    <text x="0" y="0" fill="#8C827A" class="sans" font-size="13" letter-spacing="3" font-weight="600">TONE &amp; VOICE</text>
+    <text x="1040" y="0" text-anchor="end" fill="#8C827A" class="serif" font-size="18" font-style="italic">06</text>
+    <line x1="0" y1="15" x2="1040" y2="15" stroke="#8C827A" stroke-opacity="0.25" stroke-width="1" />
+
+    <g transform="translate(0, 35)">
+      <rect x="0" y="0" width="326" height="160" fill="#FFFFFF" stroke="#E2DBD2" stroke-width="1" rx="2" />
+      <text x="25" y="40" fill="#0E1B2E" class="serif" font-size="20" font-weight="600">Authoritative</text>
+      <text x="25" y="72" fill="#4A5568" class="sans" font-size="12" font-weight="300">Thirty years of demonstrated</text>
+      <text x="25" y="94" fill="#4A5568" class="sans" font-size="12" font-weight="300">mastery. Understated, grounded in</text>
+      <text x="25" y="116" fill="#4A5568" class="sans" font-size="12" font-weight="300">craft, with humble confidence.</text>
+
+      <rect x="356" y="0" width="326" height="160" fill="#FFFFFF" stroke="#E2DBD2" stroke-width="1" rx="2" />
+      <text x="381" y="40" fill="#0E1B2E" class="serif" font-size="20" font-weight="600">Warm &amp; Client-Centered</text>
+      <text x="381" y="72" fill="#4A5568" class="sans" font-size="12" font-weight="300">Every project begins with listening.</text>
+      <text x="381" y="94" fill="#4A5568" class="sans" font-size="12" font-weight="300">Reflects deep respect for client</text>
+      <text x="381" y="116" fill="#4A5568" class="sans" font-size="12" font-weight="300">visions and life aspirations.</text>
+
+      <rect x="712" y="0" width="326" height="160" fill="#FFFFFF" stroke="#E2DBD2" stroke-width="1" rx="2" />
+      <text x="737" y="40" fill="#0E1B2E" class="serif" font-size="20" font-weight="600">Classical</text>
+      <text x="737" y="72" fill="#4A5568" class="sans" font-size="12" font-weight="300">Drawing on historical precedent</text>
+      <text x="737" y="94" fill="#4A5568" class="sans" font-size="12" font-weight="300">without being bound by it.</text>
+      <text x="737" y="116" fill="#4A5568" class="sans" font-size="12" font-weight="300">Enduring residential longevity.</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <rect x="0" y="2000" width="1200" height="400" fill="#0E1B2E" />
+  <line x1="0" y1="2000" x2="1200" y2="2000" stroke="#C5A880" stroke-opacity="0.3" stroke-width="1" />
+  <text x="600" y="2200" text-anchor="middle" fill="#F8F6F2" fill-opacity="0.6" class="sans" font-size="12" letter-spacing="3" font-weight="300">HONORED WITH OVER 50 DESIGN AWARDS · TWO PALLADIO AWARDS · ARTHUR ROSS AWARD</text>
+  <text x="600" y="2240" text-anchor="middle" fill="#C5A880" class="serif" font-size="18" font-style="italic">Harrison Design · Est. 1991</text>
+</svg>

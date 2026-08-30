@@ -526,12 +526,11 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       opacity: 1;
       transition: opacity 200ms ease;
       overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
     }
 
     .modal-page.is-fading {
@@ -542,12 +541,16 @@
     .modal-info-wrap {
       max-width: 680px;
       width: 100%;
-      padding: 60px 32px;
+      padding: 80px 32px 60px;
       margin: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
+      min-height: 100%;
+      justify-content: center;
+      box-sizing: border-box;
+    }
     }
 
     .modal-starburst {
@@ -689,15 +692,24 @@
     /* Page 2 & 3: Visual Pages */
     .modal-visual-wrap {
       width: 100%;
-      height: 100%;
+      min-height: 100%;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 70px 24px 90px;
+      box-sizing: border-box;
     }
 
     .modal-visual-img {
+      max-width: min(920px, 94vw);
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
+      margin: 0 auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      border-radius: 2px;
     }
 
     .modal-visual-project-title {
@@ -973,21 +985,13 @@
 
         <div class="project-row"
           id="project-row-2"
+          onmouseenter="showImg('img-3')"
+          onmouseleave="hideImg('img-3')"
           onclick="openPanel('panel-harrison')">
           <span class="proj-num">03.</span>
           <div class="proj-content">
             <span class="proj-name">Harrison Design, Brand in Practice</span>
             <span class="proj-cat">Brand Strategy, Editorial &amp; Content</span>
-          </div>
-        </div>
-
-        <div class="project-row"
-          id="project-row-3"
-          onclick="openPanel('panel-tradition')">
-          <span class="proj-num">04.</span>
-          <div class="proj-content">
-            <span class="proj-name">Transcending Tradition</span>
-            <span class="proj-cat">Self-Initiated</span>
           </div>
         </div>
       </div>
@@ -997,6 +1001,7 @@
     <div class="projects-right" aria-hidden="true">
       <img class="hover-img" id="img-1" src="images/Drawing Board Issue 1.jpg" alt="The Drawing Board Issue I">
       <img class="hover-img" id="img-2" src="images/Ghost Image.jpg" alt="The Drawing Board Issue II">
+      <img class="hover-img" id="img-3" src="images/Ghost Image (2).jpg" alt="Harrison Design, Brand in Practice">
     </div>
 
   </main>
@@ -1102,23 +1107,11 @@
           "Contributed to book packaging for the forthcoming Rizzoli publication",
           "Directed brand-consistent event collateral across offices"
         ],
-        pages: []
-      },
-      {
-        title: "TRANSCENDING TRADITION",
-        category: "Self-Initiated",
-        overview: "[A compelling one paragraph description of this project — what it explores, why it matters, and what makes it distinctly yours. To be filled in.]",
-        stats: [
-          { num: "2025", label: "Year" },
-          { num: "[Stat]", label: "[Label]" },
-          { num: "[Stat]", label: "[Label]" }
-        ],
-        bullets: [
-          "[Bullet one]",
-          "[Bullet two]",
-          "[Bullet three]"
-        ],
-        pages: []
+        embedUrl: "files/Harrison_Design_-_Brand_Board.pdf",
+        embedLabel: "Harrison Design, Brand Book",
+        pages: [
+          "images/Harrison Design - Brand Board.jpg"
+        ]
       }
     ];
 
@@ -1172,6 +1165,14 @@
       row1.addEventListener('pointerleave', () => hideImg('img-2'));
     }
 
+    const row2 = document.getElementById('project-row-2');
+    if (row2) {
+      row2.addEventListener('mouseenter', () => showImg('img-3'));
+      row2.addEventListener('mouseleave', () => hideImg('img-3'));
+      row2.addEventListener('pointerenter', () => showImg('img-3'));
+      row2.addEventListener('pointerleave', () => hideImg('img-3'));
+    }
+
     // Modal Paginated State Management
     let currentProjectIndex = 0;
     let currentPageIndex = 0;
@@ -1197,6 +1198,7 @@
       const project = projectsData[projIdx];
       if (!project) return;
 
+      modalPageContent.scrollTop = 0;
       modalPageCounter.classList.remove('counter-light');
       modalCloseBtn.classList.remove('btn-light');
       modalPrevBtn.classList.remove('arrow-light');
