@@ -601,6 +601,11 @@
       text-align: center;
     }
 
+    .modal-case-study { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+    .modal-case-block { text-align: center; }
+    .modal-case-block .modal-work-label { text-align: center; margin-bottom: 10px; }
+    .modal-case-block .modal-overview { margin: 0 auto; }
+
     .modal-stats-row {
       display: flex;
       justify-content: center;
@@ -956,6 +961,8 @@
 
         <div class="project-row"
           id="project-row-1"
+          onmouseenter="showImg('img-2')"
+          onmouseleave="hideImg('img-2')"
           onclick="openPanel('panel-db2')">
           <span class="proj-num">02.</span>
           <div class="proj-content">
@@ -988,7 +995,8 @@
 
     <!-- Right Half: Full Bleed Ghost Images -->
     <div class="projects-right" aria-hidden="true">
-      <img class="hover-img" id="img-1" src="images/Issue2_Villa.jpg" alt="The Drawing Board Issue I">
+      <img class="hover-img" id="img-1" src="images/Drawing Board Issue 1.jpg" alt="The Drawing Board Issue I">
+      <img class="hover-img" id="img-2" src="images/Ghost Image.jpg" alt="The Drawing Board Issue II">
     </div>
 
   </main>
@@ -1043,11 +1051,10 @@
       {
         title: "THE DRAWING BOARD, ISSUE I",
         category: "Content & Editorial",
-        overview: "Harrison Design had never had a publication. The Drawing Board was built to change that — a bi-annual editorial conceived, pitched, named, written, and produced independently. Each issue translates the firm's design philosophy into something people would actually read.",
+        problem: "Harrison Design had never had a publication. People saw the finished rooms, not the studio behind them. The brand read as elevated, but distant, with no real sense of the people or point of view driving the work.",
+        solution: "The Drawing Board was conceived, pitched, named, written, and produced independently as a bi-annual editorial flipbook that brings the audience behind the scenes. It keeps the brand's elevated tone fully intact, while finally giving it a human voice people could actually connect with.",
         stats: [
-          { num: "7:30", label: "Average view time" },
-          { num: "2", label: "Issues published" },
-          { num: "6", label: "Offices unified" }
+          { num: "7:35", label: "Average view time" }
         ],
         bullets: [
           "Pitched and secured internal buy-in",
@@ -1056,20 +1063,19 @@
           "Managed production from concept through Issuu publication",
           "Distributed across all six offices"
         ],
-        embedUrl: "https://e.issuu.com/embed.html?d=the_drawing_board_harrison_design_s_35th_anniver&u=harrison.design&hideIssuuLogo=true&hideShareButton=true&bgColor=%230D0D0D",
+        embedUrl: "https://e.issuu.com/embed.html?d=harrison_design_-_the_drawing_board_fall_winter_20&u=harrison.design&hideIssuuLogo=true&hideShareButton=true&bgColor=%230D0D0D",
         embedLabel: "The Drawing Board, Issue I",
         pages: [
-          "images/Issue2_Villa.jpg"
+          "images/Drawing Board Issue 1.jpg"
         ]
       },
       {
         title: "THE DRAWING BOARD, ISSUE II",
         category: "Content & Editorial",
-        overview: "The second edition deepened the editorial voice established in Issue I. Tied directly to the firm's forthcoming Rizzoli publication, it served as a unified marketing asset across all six offices — more personal, more specific, and more clearly the firm's own.",
+        problem: "Thirty-five years in, Harrison Design had plenty to celebrate, but no clear way to tell that story. An anniversary risked becoming just another announcement, saying little about the values and people that actually built the firm's legacy.",
+        solution: "Issue II turned the milestone into a narrative. Built around the firm's 35th anniversary, it traces the values that have shaped the studio across three and a half decades, giving the celebration real substance instead of a passing mention.",
         stats: [
-          { num: "2026", label: "Published" },
-          { num: "6", label: "Offices reached" },
-          { num: "1", label: "Rizzoli book tied to" }
+          { num: "8:12", label: "Average view time" }
         ],
         bullets: [
           "Developed the editorial concept and issue structure",
@@ -1080,18 +1086,15 @@
         embedUrl: "https://e.issuu.com/embed.html?d=the_drawing_board_harrison_design_s_35th_anniver&u=harrison.design&hideIssuuLogo=true&hideShareButton=true&bgColor=%230D0D0D",
         embedLabel: "The Drawing Board, Issue II",
         pages: [
-          "images/Issue2_Villa.jpg"
+          "images/Ghost Image.jpg"
         ]
       },
       {
         title: "HARRISON DESIGN, BRAND IN PRACTICE",
         category: "Brand Strategy · Editorial · Content",
-        overview: "A body of brand work built across three years inside one of the country's most awarded residential architecture firms. Brand guidelines, print advertising, social strategy, editorial content, book packaging, and event direction — developed independently across six offices.",
-        stats: [
-          { num: "6", label: "Offices unified" },
-          { num: "3", label: "Years of brand work" },
-          { num: "1", label: "Rizzoli publication" }
-        ],
+        problem: "There was no single source for the firm's branding. People pulled logos, colors, and messaging from whatever they could find, which meant incorrect logos and off-brand colors kept showing up in presentations across offices.",
+        solution: "I built a one-sheet brand reference covering logos, voice, and values, giving everyone at the firm a single place to check before anything went out under the Harrison Design name.",
+        stats: [],
         bullets: [
           "Developed and produced the firm's brand guidelines from scratch",
           "Concepted and produced print advertising across regional and national publications",
@@ -1152,13 +1155,21 @@
       if (el) el.classList.remove('visible');
     }
 
-    // Attach listeners directly to #project-row-0
+    // Attach listeners directly to #project-row-0 and #project-row-1
     const row0 = document.getElementById('project-row-0');
     if (row0) {
       row0.addEventListener('mouseenter', () => showImg('img-1'));
       row0.addEventListener('mouseleave', () => hideImg('img-1'));
       row0.addEventListener('pointerenter', () => showImg('img-1'));
       row0.addEventListener('pointerleave', () => hideImg('img-1'));
+    }
+
+    const row1 = document.getElementById('project-row-1');
+    if (row1) {
+      row1.addEventListener('mouseenter', () => showImg('img-2'));
+      row1.addEventListener('mouseleave', () => hideImg('img-2'));
+      row1.addEventListener('pointerenter', () => showImg('img-2'));
+      row1.addEventListener('pointerleave', () => hideImg('img-2'));
     }
 
     // Modal Paginated State Management
@@ -1203,8 +1214,20 @@
             <h2 class="modal-title">${project.title}</h2>
             <div class="modal-cat">${project.category}</div>
             <hr class="modal-rule">
-            <p class="modal-overview">${project.overview}</p>
+            ${project.problem && project.solution ? `
+              <div class="modal-case-study">
+                <div class="modal-case-block">
+                  <span class="modal-work-label">THE PROBLEM</span>
+                  <p class="modal-overview">${project.problem}</p>
+                </div>
+                <div class="modal-case-block">
+                  <span class="modal-work-label">THE SOLUTION</span>
+                  <p class="modal-overview">${project.solution}</p>
+                </div>
+              </div>
+            ` : `<p class="modal-overview">${project.overview}</p>`}
             <hr class="modal-rule">
+            ${project.stats && project.stats.length > 0 ? `
             <div class="modal-stats-row">
               ${project.stats.map(s => `
                 <div class="modal-stat-item">
@@ -1213,6 +1236,7 @@
                 </div>
               `).join('')}
             </div>
+            ` : ''}
             <div class="modal-work-col">
               <span class="modal-work-label">THE WORK</span>
               <ul class="modal-work-bullets">
