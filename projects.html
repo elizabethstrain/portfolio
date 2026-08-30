@@ -1145,6 +1145,13 @@
       });
     });
 
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        document.body.classList.remove('page-fading');
+        document.body.classList.add('page-loaded');
+      }
+    });
+
     // Right-half Hover Image Controls
     function showImg(id) {
       document.querySelectorAll('.hover-img').forEach(img => img.classList.remove('visible'));

@@ -415,6 +415,13 @@
       });
     });
 
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        document.body.classList.remove('page-fading');
+        document.body.classList.add('page-loaded');
+      }
+    });
+
     // Navigation Overlay Logic
     const hamburger = document.querySelector('.hamburger');
     const navOverlay = document.getElementById('navOverlay') || document.getElementById('nav-overlay');
