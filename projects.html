@@ -207,7 +207,8 @@
     }
 
     /* Layout: Split into Left (50%) and Right (50%) */
-    .projects-layout {
+    .projects-layout,
+    .projects-wrap {
       position: relative;
       width: 100%;
       min-height: 100vh;
@@ -228,7 +229,7 @@
     }
 
     .projects-right {
-      position: fixed;
+      position: sticky;
       top: 0;
       right: 0;
       width: 50%;
@@ -356,10 +357,10 @@
         background: transparent;
       }
       .projects-right {
-        position: fixed;
+        position: absolute;
         inset: 0;
         width: 100%;
-        height: 100vh;
+        height: 100%;
         z-index: 0;
       }
       .hover-img.visible {
@@ -920,7 +921,7 @@
       }
       .projects-right {
         width: 100%;
-        height: 100vh;
+        height: 100%;
       }
       .project-modal {
         grid-template-columns: 1fr;
@@ -960,10 +961,10 @@
   </header>
 
   <!-- Main Split Layout -->
-  <main class="projects-layout" id="projects-page">
+  <main class="projects-layout projects-wrap" id="projects-page" style="position: relative; min-height: 100vh;">
     
     <!-- Left Half: Project List -->
-    <section class="projects-left">
+    <div class="projects-left">
       <header class="page-header">
         <h1 class="page-title" id="projects-title">Selected Projects</h1>
         <p class="page-subtitle" id="projects-subtitle">A collection of brand, PR, and self-initiated work.</p>
@@ -1007,7 +1008,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
     <!-- Right Half: Full Bleed Ghost Images -->
     <div class="projects-right" aria-hidden="true">
