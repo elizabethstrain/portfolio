@@ -275,9 +275,11 @@
       border-color: var(--color-near-black);
     }
 
-    .moodboard-embed-container {
+    /* Moodboard Embed Container & Responsive Pinterest Board */
+    .moodboard-embed-container,
+    section#moodboard-section:nth-of-type(1) > div:nth-of-type(2) {
       width: 100%;
-      padding: 0 24px;
+      padding: 0 16px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -286,17 +288,30 @@
 
     .pinterest-widget-wrapper {
       width: 100%;
-      max-width: 1320px;
+      max-width: 1680px;
       display: flex;
       justify-content: center;
-      min-height: 480px;
+      min-height: 520px;
     }
 
-    .pinterest-widget-wrapper > span {
+    .pinterest-widget-wrapper > span,
+    section#moodboard-section:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > span:nth-of-type(1) {
       margin: 0 auto !important;
+      width: 100% !important;
       max-width: 100% !important;
       border-radius: 6px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+    }
+
+    section#moodboard-section:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(1) {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+    }
+
+    .pinterest-widget-wrapper iframe {
+      width: 100% !important;
+      max-width: 100% !important;
     }
 
     @media (max-width: 768px) {
@@ -314,8 +329,9 @@
       .moodboard-blurb {
         font-size: 15px;
       }
-      .moodboard-embed-container {
-        padding: 0 12px;
+      .moodboard-embed-container,
+      section#moodboard-section:nth-of-type(1) > div:nth-of-type(2) {
+        padding: 0 8px;
       }
     }
 
@@ -646,12 +662,24 @@
     <div class="moodboard-embed-container">
       <div class="pinterest-widget-wrapper">
         <a data-pin-do="embedBoard" 
-           data-pin-board-width="1200" 
-           data-pin-scale-height="540" 
+           data-pin-board-width="1600" 
+           data-pin-scale-height="560" 
            data-pin-scale-width="190" 
            href="https://www.pinterest.com/elizabethcarolineee/currently-coveting/">
         </a>
       </div>
+      <script>
+        (function() {
+          try {
+            var pinLink = document.querySelector('[data-pin-do="embedBoard"]');
+            if (pinLink) {
+              var screenW = window.innerWidth || document.documentElement.clientWidth || 1400;
+              var targetW = Math.min(1680, Math.max(300, screenW - (screenW < 768 ? 20 : 36)));
+              pinLink.setAttribute('data-pin-board-width', Math.floor(targetW).toString());
+            }
+          } catch(e) {}
+        })();
+      </script>
     </div>
   </section>
 
