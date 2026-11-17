@@ -979,6 +979,9 @@
       text-decoration: none;
       transition: color 200ms ease;
       display: inline-block;
+      padding: 6px 16px;
+      margin: -6px -16px;
+      will-change: transform;
     }
 
     .nav-link-item a:hover {
@@ -1082,11 +1085,11 @@
           id="project-row-2"
           onmouseenter="showImg('img-3')"
           onmouseleave="hideImg('img-3')"
-          onclick="openPanel('panel-harrison')">
+          onclick="openPanel('panel-package')">
           <span class="proj-num">03.</span>
           <div class="proj-content">
-            <span class="proj-name">Harrison Design, Brand in Practice</span>
-            <span class="proj-cat">Brand Strategy, Editorial &amp; Content</span>
+            <span class="proj-name">Package Design</span>
+            <span class="proj-cat">Packaging &amp; Print</span>
           </div>
         </div>
       </div>
@@ -1096,7 +1099,7 @@
     <div class="projects-right" aria-hidden="true">
       <img class="hover-img" id="img-1" src="images/Drawing Board Issue 1.jpg" alt="The Drawing Board Issue I">
       <img class="hover-img" id="img-2" src="images/Ghost Image.jpg" alt="The Drawing Board Issue II">
-      <img class="hover-img" id="img-3" src="images/Ghost Image (2).jpg" alt="Harrison Design, Brand in Practice">
+      <img class="hover-img" id="img-3" src="public/assets/aistudio/IMG_6322_6263fa2d.jpeg" alt="Package Design">
     </div>
 
   </main>
@@ -1190,21 +1193,30 @@
         ]
       },
       {
-        title: "HARRISON DESIGN, BRAND IN PRACTICE",
-        category: "Brand Strategy · Editorial · Content",
-        problem: "There was no single source for the firm's branding. People pulled logos, colors, and messaging from whatever they could find, which meant incorrect logos and off-brand colors kept showing up in presentations across offices.",
-        solution: "I built a one-sheet brand reference covering logos, voice, and values, giving everyone at the firm a single place to check before anything went out under the Harrison Design name.",
+        title: "PACKAGE DESIGN",
+        category: "Packaging & Print",
+        problemLabel: "THE DECK",
+        problem: "The first introduction to Transcending Tradition, designed to capture the character of the book before it was even opened.",
+        solutionLabel: "THE BRIEF",
+        solution: "I wanted the press package for Transcending Tradition to feel like a natural extension of the book itself. From the materials and finishes to the smallest details, every element was thoughtfully considered and designed by me. Embossed navy stickers, handwritten notes on classic letterpress stationery, and custom tissue paper inspired by the artwork on the book's cover brought the visual identity of the publication into the unboxing experience.",
         stats: [],
         bullets: [
-          "Developed and produced the firm's brand guidelines from scratch",
-          "Concepted and produced print advertising across regional and national publications",
-          "Built and managed the social media content calendar and analytics",
-          "Contributed to book packaging for the forthcoming Rizzoli publication",
-          "Directed brand-consistent event collateral across offices"
+          "Conceptualized, designed, and assembled the complete press package",
+          "Designed custom embossed navy stickers",
+          "Selected letterpress stationery for personalized, handwritten notes",
+          "Created custom tissue paper inspired by the book cover's artwork"
         ],
-        embedUrl: "files/Harrison_Design_-_Brand_Board.pdf",
-        embedLabel: "Harrison Design, Brand Book",
-        pages: []
+        embedUrl: "",
+        embedLabel: "",
+        pages: [
+          {
+            video: {
+              type: "embed",
+              src: "https://player.vimeo.com/video/1247751748?title=0&byline=0&portrait=0"
+            },
+            label: "The PR package"
+          }
+        ]
       }
     ];
 
@@ -1236,19 +1248,36 @@
       }
     });
 
-    // Right-half Hover Image Controls
+    // Right-half Hover Media Controls
     function showImg(id) {
-      document.querySelectorAll('.hover-img').forEach(img => img.classList.remove('visible'));
+      document.querySelectorAll('.hover-img').forEach(el => {
+        el.classList.remove('visible');
+        if (el.tagName === 'VIDEO') {
+          el.pause();
+        }
+      });
       const el = document.getElementById(id);
-      if (el) el.classList.add('visible');
+      if (el) {
+        const wasVisible = el.classList.contains('visible');
+        el.classList.add('visible');
+        if (el.tagName === 'VIDEO' && !wasVisible) {
+          el.currentTime = 0;
+          el.play().catch(() => {});
+        }
+      }
     }
 
     function hideImg(id) {
       const el = document.getElementById(id);
-      if (el) el.classList.remove('visible');
+      if (el) {
+        el.classList.remove('visible');
+        if (el.tagName === 'VIDEO') {
+          el.pause();
+        }
+      }
     }
 
-    // Attach listeners directly to #project-row-0 and #project-row-1
+    // Attach listeners directly to project rows
     const row0 = document.getElementById('project-row-0');
     if (row0) {
       row0.addEventListener('mouseenter', () => showImg('img-1'));
@@ -1319,16 +1348,16 @@
             ${project.problem && project.solution ? `
               <div class="modal-case-study">
                 <div class="modal-case-block">
-                  <span class="modal-work-label">THE PROBLEM</span>
+                  <span class="modal-work-label">${project.problemLabel || 'THE PROBLEM'}</span>
                   <p class="modal-overview">${project.problem}</p>
                 </div>
                 <div class="modal-case-block">
-                  <span class="modal-work-label">THE SOLUTION</span>
+                  <span class="modal-work-label">${project.solutionLabel || 'THE SOLUTION'}</span>
                   <p class="modal-overview">${project.solution}</p>
                 </div>
               </div>
             ` : `<p class="modal-overview">${project.overview}</p>`}
-            <hr class="modal-rule">
+            ${(project.stats && project.stats.length > 0) || (project.bullets && project.bullets.length > 0) ? '<hr class="modal-rule">' : ''}
             ${project.stats && project.stats.length > 0 ? `
             <div class="modal-stats-row">
               ${project.stats.map(s => `
@@ -1339,6 +1368,7 @@
               `).join('')}
             </div>
             ` : ''}
+            ${project.bullets && project.bullets.length > 0 ? `
             <div class="modal-work-col">
               <span class="modal-work-label">THE WORK</span>
               <ul class="modal-work-bullets">
@@ -1350,6 +1380,7 @@
                 `).join('')}
               </ul>
             </div>
+            ` : ''}
             <div class="modal-bottom-close-wrap">
               <button type="button" class="modal-bottom-close-btn" onclick="closeModal()" aria-label="Close Project and return to list">
                 <span>✕</span>
@@ -1401,14 +1432,59 @@
 
         const imageOffset = project.embedUrl ? 2 : 1;
         const imgIndex = pageIdx - imageOffset;
-        const imgSrc = project.pages && project.pages[imgIndex] ? project.pages[imgIndex] : '';
+        const pageEntry = project.pages && project.pages[imgIndex] ? project.pages[imgIndex] : '';
 
-        modalPageContent.innerHTML = `
-          <div class="modal-visual-wrap" onclick="if(event.target === this || event.target.classList.contains('modal-visual-wrap')) closeModal()">
-            <img src="${imgSrc}" alt="${project.title} Visual" class="modal-visual-img" onclick="event.stopPropagation()" onerror="if(this.src.indexOf('images/')===-1){this.src='images/' + this.getAttribute('src');}">
-            <div class="modal-visual-project-title">${project.title}</div>
-          </div>
-        `;
+        if (pageEntry && typeof pageEntry === 'object' && pageEntry.video) {
+          const video = pageEntry.video;
+          const labelText = pageEntry.label || project.title;
+
+          if (video.type === 'embed') {
+            modalPageContent.innerHTML = `
+              <div style="width: 100%; height: 100%; min-height: 100%; background-color: #0D0D0D; display: flex; align-items: center; justify-content: center; padding: 70px 24px 90px; box-sizing: border-box;" onclick="if(event.target === this) closeModal()">
+                <div style="width: min(90vw, calc(82vh * 9 / 16)); height: min(82vh, calc(90vw * 16 / 9)); border-radius: 2px; overflow: hidden; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6); background: #000; margin: auto;" onclick="event.stopPropagation()">
+                  <iframe
+                    src="${video.src}"
+                    title="Package Design project video"
+                    loading="lazy"
+                    style="width: 100%; height: 100%; border: none; display: block;"
+                    allowfullscreen
+                    allow="autoplay; fullscreen; picture-in-picture"
+                  ></iframe>
+                </div>
+                <div class="modal-visual-project-title">${labelText}</div>
+              </div>
+            `;
+          } else {
+            modalPageContent.innerHTML = `
+              <div style="width: 100%; height: 100%; min-height: 100%; background-color: #0D0D0D; display: flex; align-items: center; justify-content: center; padding: 64px 24px 72px; box-sizing: border-box;" onclick="if(event.target === this) closeModal()">
+                <video
+                  src="${video.src}"
+                  ${video.poster ? `poster="${video.poster}"` : ''}
+                  controls
+                  playsinline
+                  preload="metadata"
+                  style="max-height: 82vh; max-width: 90vw; aspect-ratio: 9 / 16; background: #000; display: block; margin: auto;"
+                  onclick="event.stopPropagation()"
+                ></video>
+                <div class="modal-visual-project-title">${labelText}</div>
+              </div>
+            `;
+          }
+        } else {
+          const imgSrc = (pageEntry && typeof pageEntry === 'object') ? (pageEntry.src || '') : pageEntry;
+          const labelText = (pageEntry && typeof pageEntry === 'object' && pageEntry.label) ? pageEntry.label : project.title;
+          const isVideo = /\.(mp4|mov|webm)$/i.test(imgSrc);
+
+          modalPageContent.innerHTML = `
+            <div class="modal-visual-wrap" onclick="if(event.target === this || event.target.classList.contains('modal-visual-wrap')) closeModal()">
+              ${isVideo
+                ? `<video src="${imgSrc}" class="modal-visual-img" autoplay loop muted playsinline controls onclick="event.stopPropagation()"></video>`
+                : `<img src="${imgSrc}" alt="${labelText} Visual" class="modal-visual-img" onclick="event.stopPropagation()" onerror="if(this.src.indexOf('images/')===-1 && this.src.indexOf('public/')===-1){this.src='images/' + this.getAttribute('src');}">`
+              }
+              <div class="modal-visual-project-title">${labelText}</div>
+            </div>
+          `;
+        }
       }
     }
 
@@ -1436,6 +1512,14 @@
       if (isTransitioning || newIdx < 0 || newIdx >= totalPages || newIdx === currentPageIndex) return;
 
       isTransitioning = true;
+      if (modalPageContent) {
+        modalPageContent.querySelectorAll('video').forEach(v => v.pause());
+        modalPageContent.querySelectorAll('iframe').forEach(frame => {
+          try {
+            frame.contentWindow.postMessage(JSON.stringify({ method: 'pause' }), '*');
+          } catch (e) {}
+        });
+      }
       modalPageContent.classList.add('is-fading');
 
       setTimeout(() => {
@@ -1454,9 +1538,8 @@
         'panel-db1': 0,
         'panel-db2': 1,
         'panel-sb': 1,
-        'panel-harrison': 2,
-        'panel-al': 2,
-        'panel-tradition': 3
+        'panel-package': 2,
+        'panel-tradition': 2
       };
       const idx = typeof panelKey === 'number' ? panelKey : (mapping[panelKey] !== undefined ? mapping[panelKey] : 0);
       currentProjectIndex = idx;
@@ -1475,11 +1558,45 @@
       modal.classList.remove('is-open');
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      if (modalPageContent) {
+        modalPageContent.querySelectorAll('video').forEach(v => {
+          v.pause();
+          v.removeAttribute('src');
+          v.load();
+        });
+        modalPageContent.querySelectorAll('iframe').forEach(frame => {
+          try {
+            frame.contentWindow.postMessage(JSON.stringify({ method: 'pause' }), '*');
+          } catch (e) {}
+          frame.src = 'about:blank';
+        });
+        modalPageContent.innerHTML = '';
+      }
     }
 
     if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
     if (modalPrevBtn) modalPrevBtn.addEventListener('click', () => goToPage(currentPageIndex - 1));
     if (modalNextBtn) modalNextBtn.addEventListener('click', () => goToPage(currentPageIndex + 1));
+
+    // Touch swipe support for modal slides
+    let touchStartX = 0;
+    let touchStartY = 0;
+    if (modal) {
+      modal.addEventListener('touchstart', (e) => {
+        if (!modal.classList.contains('is-open') || e.touches.length !== 1) return;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      modal.addEventListener('touchend', (e) => {
+        if (!modal.classList.contains('is-open') || e.changedTouches.length !== 1) return;
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+          if (dx < 0) goToPage(currentPageIndex + 1);
+          else goToPage(currentPageIndex - 1);
+        }
+      }, { passive: true });
+    }
 
     document.addEventListener('keydown', (e) => {
       if (modal.classList.contains('is-open')) {
@@ -1578,8 +1695,8 @@
 
       function isDarkUnderCursor(el) {
         if (!el) return false;
-        if (el.tagName === 'IMG' || el.tagName === 'PICTURE' || el.tagName === 'FIGURE' ||
-            el.closest('img, picture, figure, .hover-img, .modal-visual-col, .modal-visual-img, .project-card, [style*="background-image"]')) {
+        if (el.tagName === 'IMG' || el.tagName === 'VIDEO' || el.tagName === 'PICTURE' || el.tagName === 'FIGURE' ||
+            el.closest('img, video, picture, figure, .hover-img, .modal-visual-col, .modal-visual-img, .project-card, [style*="background-image"]')) {
           return true;
         }
         if (el.closest('.blue-zone, .footer-blue-zone, .nav-overlay, .modal-overlay, .modal-drawer, [data-theme="dark"], .dark-bg, .bg-dark')) {
@@ -1624,6 +1741,67 @@
 
       requestAnimationFrame(render);
       bindCursorHovers();
+    })();
+
+    // Subtle Magnetic Effect for Overlay Navigation Links
+    (function() {
+      if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const overlayLinks = document.querySelectorAll('.nav-overlay .nav-link-item a');
+      if (!overlayLinks.length) return;
+
+      overlayLinks.forEach(link => {
+        const anchor = link.parentElement || link;
+        let targetX = 0;
+        let targetY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        let rafId = null;
+
+        function animate() {
+          currentX += (targetX - currentX) * 0.16;
+          currentY += (targetY - currentY) * 0.16;
+
+          if (Math.abs(targetX - currentX) < 0.05 && Math.abs(targetY - currentY) < 0.05) {
+            currentX = targetX;
+            currentY = targetY;
+          }
+
+          if (currentX === 0 && currentY === 0 && targetX === 0 && targetY === 0) {
+            link.style.transform = '';
+            rafId = null;
+            return;
+          }
+
+          link.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0)`;
+          rafId = requestAnimationFrame(animate);
+        }
+
+        function startAnimation() {
+          if (!rafId) {
+            rafId = requestAnimationFrame(animate);
+          }
+        }
+
+        link.addEventListener('mousemove', (e) => {
+          const rect = anchor.getBoundingClientRect();
+          const relX = e.clientX - (rect.left + rect.width / 2);
+          const relY = e.clientY - (rect.top + rect.height / 2);
+          const maxPullX = 11;
+          const maxPullY = 7;
+
+          targetX = Math.max(-maxPullX, Math.min(maxPullX, relX * 0.16));
+          targetY = Math.max(-maxPullY, Math.min(maxPullY, relY * 0.22));
+          startAnimation();
+        });
+
+        link.addEventListener('mouseleave', () => {
+          targetX = 0;
+          targetY = 0;
+          startAnimation();
+        });
+      });
     })();
   </script>
 </body>

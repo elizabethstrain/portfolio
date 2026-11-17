@@ -428,6 +428,9 @@
       text-decoration: none;
       transition: color 200ms ease;
       display: inline-block;
+      padding: 6px 16px;
+      margin: -6px -16px;
+      will-change: transform;
     }
 
     .nav-link-item a:hover {
@@ -709,6 +712,67 @@
 
       requestAnimationFrame(render);
       bindCursorHovers();
+    })();
+
+    // Subtle Magnetic Effect for Overlay Navigation Links
+    (function() {
+      if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const overlayLinks = document.querySelectorAll('.nav-overlay .nav-link-item a');
+      if (!overlayLinks.length) return;
+
+      overlayLinks.forEach(link => {
+        const anchor = link.parentElement || link;
+        let targetX = 0;
+        let targetY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        let rafId = null;
+
+        function animate() {
+          currentX += (targetX - currentX) * 0.16;
+          currentY += (targetY - currentY) * 0.16;
+
+          if (Math.abs(targetX - currentX) < 0.05 && Math.abs(targetY - currentY) < 0.05) {
+            currentX = targetX;
+            currentY = targetY;
+          }
+
+          if (currentX === 0 && currentY === 0 && targetX === 0 && targetY === 0) {
+            link.style.transform = '';
+            rafId = null;
+            return;
+          }
+
+          link.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0)`;
+          rafId = requestAnimationFrame(animate);
+        }
+
+        function startAnimation() {
+          if (!rafId) {
+            rafId = requestAnimationFrame(animate);
+          }
+        }
+
+        link.addEventListener('mousemove', (e) => {
+          const rect = anchor.getBoundingClientRect();
+          const relX = e.clientX - (rect.left + rect.width / 2);
+          const relY = e.clientY - (rect.top + rect.height / 2);
+          const maxPullX = 11;
+          const maxPullY = 7;
+
+          targetX = Math.max(-maxPullX, Math.min(maxPullX, relX * 0.16));
+          targetY = Math.max(-maxPullY, Math.min(maxPullY, relY * 0.22));
+          startAnimation();
+        });
+
+        link.addEventListener('mouseleave', () => {
+          targetX = 0;
+          targetY = 0;
+          startAnimation();
+        });
+      });
     })();
   </script>
 </body>
