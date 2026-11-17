@@ -702,6 +702,67 @@
       color: #8C827A;
     }
 
+    .modal-stat-sub {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: #8FA3B8;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .modal-results-section {
+      width: 100%;
+      max-width: 620px;
+      margin: 0 auto 8px;
+      text-align: center;
+    }
+
+    .modal-results-section > .modal-work-label {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .modal-results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 36px 48px;
+      width: 100%;
+    }
+
+    .modal-results-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .modal-results-col-title {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1C1917;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      border-bottom: 0.5px solid rgba(140, 130, 122, 0.28);
+      width: 100%;
+      max-width: 220px;
+    }
+
+    .modal-results-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px 16px;
+      width: 100%;
+    }
+
+    .modal-results-stats .modal-stat-item {
+      min-width: 0;
+    }
+
     .modal-work-col {
       width: 100%;
       max-width: 560px;
@@ -780,6 +841,250 @@
       background: rgba(139, 105, 20, 0.06);
     }
 
+    /* Slide 2: Live Instagram Feed (Matched to Thinking & POV Moodboard) */
+    .modal-ig-wrap {
+      width: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 84px 76px 96px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .modal-ig-header {
+      max-width: 720px;
+      margin: 0 auto 40px;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .modal-ig-script {
+      font-family: var(--font-script);
+      font-size: 2.8rem;
+      color: var(--color-gold);
+      margin-bottom: 10px;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .modal-ig-profile-row {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .modal-ig-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 0.5px solid rgba(168, 157, 143, 0.5);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      flex-shrink: 0;
+      background: rgba(168, 157, 143, 0.16);
+    }
+
+    .modal-ig-identity {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .modal-ig-handle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 2.15rem;
+      color: var(--color-near-black);
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .modal-ig-followers {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #8C827A;
+    }
+
+    .modal-ig-bio {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(28, 25, 23, 0.82);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .modal-ig-board {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.45);
+      border: 0.5px solid rgba(168, 157, 143, 0.25);
+      border-radius: 6px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .modal-ig-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      width: 100%;
+    }
+
+    .modal-ig-card {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 6px;
+      overflow: hidden;
+      background: rgba(168, 157, 143, 0.16);
+      text-decoration: none;
+      transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 280ms ease;
+    }
+
+    .modal-ig-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(28, 25, 23, 0.14);
+      opacity: 0;
+      transition: opacity 260ms ease;
+      pointer-events: none;
+    }
+
+    .modal-ig-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(28, 25, 23, 0.12);
+    }
+
+    .modal-ig-card:hover::after {
+      opacity: 1;
+    }
+
+    .modal-ig-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 460ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-ig-card:hover img {
+      transform: scale(1.035);
+    }
+
+    .modal-ig-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(28, 25, 23, 0.5);
+      border: 0.5px solid rgba(245, 242, 239, 0.45);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #F5F2EF;
+      z-index: 2;
+      pointer-events: none;
+      transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), background 260ms ease;
+    }
+
+    .modal-ig-card:hover .modal-ig-play {
+      transform: translate(-50%, -50%) scale(1.08);
+      background: rgba(28, 25, 23, 0.68);
+    }
+
+    .modal-ig-footer {
+      margin-top: 36px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .modal-ig-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-near-black);
+      border: 0.5px solid rgba(28, 25, 23, 0.35);
+      border-radius: 100px;
+      padding: 9px 24px;
+      text-decoration: none;
+      transition: all 200ms ease;
+    }
+
+    .modal-ig-btn:hover {
+      background: var(--color-near-black);
+      color: var(--color-cool-cream);
+      border-color: var(--color-near-black);
+    }
+
+    @keyframes igPulse {
+      0%, 100% { opacity: 0.45; }
+      50% { opacity: 0.85; }
+    }
+
+    .modal-ig-skeleton-card {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 6px;
+      background: rgba(168, 157, 143, 0.22);
+      animation: igPulse 1.5s ease-in-out infinite;
+    }
+
+    .modal-ig-skeleton-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(168, 157, 143, 0.25);
+      animation: igPulse 1.5s ease-in-out infinite;
+    }
+
+    .modal-ig-skeleton-line {
+      height: 12px;
+      border-radius: 4px;
+      background: rgba(168, 157, 143, 0.22);
+      animation: igPulse 1.5s ease-in-out infinite;
+    }
+
+    .modal-ig-fallback {
+      min-height: 62vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .modal-ig-fallback-copy {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.85;
+      color: rgba(28, 25, 23, 0.8);
+      margin: 14px 0 28px;
+    }
+
     /* Page 2 & 3: Visual Pages */
     .modal-visual-wrap {
       width: 100%;
@@ -840,12 +1145,36 @@
       .modal-stats-row {
         gap: 24px;
       }
+      .modal-results-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
       .modal-visual-project-title {
         left: 24px;
         bottom: 24px;
       }
       .modal-embed-label {
         font-size: 9px;
+      }
+      .modal-ig-wrap {
+        padding: 76px 16px 88px;
+      }
+      .modal-ig-header {
+        margin-bottom: 28px;
+        padding: 0 8px;
+      }
+      .modal-ig-handle {
+        font-size: 1.7rem;
+      }
+      .modal-ig-bio {
+        font-size: 14px;
+      }
+      .modal-ig-board {
+        padding: 12px;
+      }
+      .modal-ig-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
       }
     }
 
@@ -1092,6 +1421,18 @@
             <span class="proj-cat">Packaging &amp; Print</span>
           </div>
         </div>
+
+        <div class="project-row"
+          id="project-row-3"
+          onmouseenter="showImg('img-4')"
+          onmouseleave="hideImg('img-4')"
+          onclick="openPanel('panel-social')">
+          <span class="proj-num">04.</span>
+          <div class="proj-content">
+            <span class="proj-name">Harrison Design Social Media Management</span>
+            <span class="proj-cat">Social Strategy &middot; Content Creation &middot; Analytics</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1100,6 +1441,7 @@
       <img class="hover-img" id="img-1" src="images/Drawing Board Issue 1.jpg" alt="The Drawing Board Issue I">
       <img class="hover-img" id="img-2" src="images/Ghost Image.jpg" alt="The Drawing Board Issue II">
       <img class="hover-img" id="img-3" src="public/assets/aistudio/IMG_6322_6263fa2d.jpeg" alt="Package Design">
+      <img class="hover-img" id="img-4" src="public/assets/aistudio/Instagram_Grid_7a8cdec7.jpg" alt="Harrison Design Social Media Management">
     </div>
 
   </main>
@@ -1217,6 +1559,49 @@
             label: "The PR package"
           }
         ]
+      },
+      {
+        title: "HARRISON DESIGN SOCIAL MEDIA MANAGEMENT",
+        category: "Social Strategy · Content Creation · Analytics",
+        problemLabel: "THE BRIEF",
+        problem: "Harrison Design is a nationally recognized residential architecture and interior design firm with six offices: Atlanta, Los Angeles, Naples, St. Simons Island, Santa Barbara, and Washington, D.C. Each office has its own regional style, from coastal Southern to classic California. The challenge was to tell all of those stories in one cohesive voice while keeping the account as elevated as the work itself.",
+        solutionLabel: "THE APPROACH",
+        solution: "I built a content strategy that gives every office its moment while holding to a consistent visual standard: refined photography, restrained typography, and editorial captions that put craftsmanship first. Each office’s distinct design language is visible across the feed, but the feed itself still reads unmistakably as Harrison Design. I used analytics throughout to refine content, cadence, and format based on what resonated.",
+        stats: [],
+        resultsSection: {
+          heading: "The Results (2025 vs. 2024, 100% organic)",
+          columns: [
+            {
+              platform: "Instagram",
+              metrics: [
+                { num: "1.2M", label: "Views", sub: "Up 538%" },
+                { num: "111.7K", label: "Accounts reached", sub: "Up 182%" },
+                { num: "17K", label: "Interactions", sub: "Up 150%" },
+                { num: "+10.7K", label: "New followers", sub: "Bringing the account to 82.5K" }
+              ]
+            },
+            {
+              platform: "Facebook",
+              metrics: [
+                { num: "358.9K", label: "Views", sub: "Up 1,502%" },
+                { num: "40.1K", label: "Accounts reached", sub: "Up 232%" },
+                { num: "3.5K", label: "Interactions", sub: "Up 256%" },
+                { num: "25%", label: "Follower growth", sub: "" }
+              ]
+            }
+          ]
+        },
+        bullets: [],
+        embedUrl: "",
+        embedLabel: "",
+        pages: [
+          {
+            type: "instagram-feed",
+            feedUrl: "https://feeds.behold.so/3GiRHeh1WhuGQMW1w7na",
+            instagramUrl: "https://www.instagram.com/harrisondesign/",
+            handle: "@harrisondesign"
+          }
+        ]
       }
     ];
 
@@ -1302,6 +1687,14 @@
       row2.addEventListener('pointerleave', () => hideImg('img-3'));
     }
 
+    const row3 = document.getElementById('project-row-3');
+    if (row3) {
+      row3.addEventListener('mouseenter', () => showImg('img-4'));
+      row3.addEventListener('mouseleave', () => hideImg('img-4'));
+      row3.addEventListener('pointerenter', () => showImg('img-4'));
+      row3.addEventListener('pointerleave', () => hideImg('img-4'));
+    }
+
     // Modal Paginated State Management
     let currentProjectIndex = 0;
     let currentPageIndex = 0;
@@ -1357,7 +1750,7 @@
                 </div>
               </div>
             ` : `<p class="modal-overview">${project.overview}</p>`}
-            ${(project.stats && project.stats.length > 0) || (project.bullets && project.bullets.length > 0) ? '<hr class="modal-rule">' : ''}
+            ${(project.stats && project.stats.length > 0) || project.resultsSection || (project.bullets && project.bullets.length > 0) ? '<hr class="modal-rule">' : ''}
             ${project.stats && project.stats.length > 0 ? `
             <div class="modal-stats-row">
               ${project.stats.map(s => `
@@ -1366,6 +1759,27 @@
                   <span class="modal-stat-label">${s.label}</span>
                 </div>
               `).join('')}
+            </div>
+            ` : ''}
+            ${project.resultsSection ? `
+            <div class="modal-results-section">
+              <span class="modal-work-label">${project.resultsSection.heading}</span>
+              <div class="modal-results-grid">
+                ${project.resultsSection.columns.map(col => `
+                  <div class="modal-results-col">
+                    <div class="modal-results-col-title">${col.platform}</div>
+                    <div class="modal-results-stats">
+                      ${col.metrics.map(m => `
+                        <div class="modal-stat-item">
+                          <span class="modal-stat-num">${m.num}</span>
+                          <span class="modal-stat-label">${m.label}</span>
+                          ${m.sub ? `<span class="modal-stat-sub">${m.sub}</span>` : ''}
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
             </div>
             ` : ''}
             ${project.bullets && project.bullets.length > 0 ? `
@@ -1424,15 +1838,20 @@
           </div>
         `;
       } else {
-        // Full Bleed Visual View
+        const imageOffset = project.embedUrl ? 2 : 1;
+        const imgIndex = pageIdx - imageOffset;
+        const pageEntry = project.pages && project.pages[imgIndex] ? project.pages[imgIndex] : '';
+
+        if (pageEntry && typeof pageEntry === 'object' && pageEntry.type === 'instagram-feed') {
+          renderInstagramFeedSlide(pageEntry, projIdx, pageIdx);
+          return;
+        }
+
+        // Full Bleed Visual View (dark background)
         modalPageCounter.classList.add('counter-light');
         modalCloseBtn.classList.add('btn-light');
         modalPrevBtn.classList.add('arrow-light');
         modalNextBtn.classList.add('arrow-light');
-
-        const imageOffset = project.embedUrl ? 2 : 1;
-        const imgIndex = pageIdx - imageOffset;
-        const pageEntry = project.pages && project.pages[imgIndex] ? project.pages[imgIndex] : '';
 
         if (pageEntry && typeof pageEntry === 'object' && pageEntry.video) {
           const video = pageEntry.video;
@@ -1488,6 +1907,179 @@
       }
     }
 
+    const instagramFeedCache = {};
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function formatFollowerCount(count) {
+      if (typeof count !== 'number' || isNaN(count)) return '';
+      if (count >= 1000000) {
+        return (count / 1000000).toFixed(1).replace(/\.0$/, '') + 'M followers';
+      }
+      if (count >= 10000) {
+        return (count / 1000).toFixed(1).replace(/\.0$/, '') + 'K followers';
+      }
+      return count.toLocaleString('en-US') + ' followers';
+    }
+
+    function renderInstagramLoadingState(entry) {
+      const skeletons = Array.from({ length: 6 })
+        .map(() => '<div class="modal-ig-skeleton-card" aria-hidden="true"></div>')
+        .join('');
+
+      modalPageContent.innerHTML = `
+        <div class="modal-ig-wrap" aria-busy="true" aria-label="Loading Instagram profile">
+          <div class="modal-ig-header">
+            <div class="modal-ig-script">Instagram</div>
+            <div class="modal-ig-profile-row">
+              <div class="modal-ig-skeleton-avatar"></div>
+              <div class="modal-ig-identity">
+                <div class="modal-ig-skeleton-line" style="width: 170px; height: 22px;"></div>
+                <div class="modal-ig-skeleton-line" style="width: 105px; height: 10px; margin-top: 6px;"></div>
+              </div>
+            </div>
+            <div class="modal-ig-skeleton-line" style="width: min(440px, 85%); margin-top: 6px;"></div>
+            <div class="modal-ig-skeleton-line" style="width: min(320px, 65%); margin-top: 8px;"></div>
+          </div>
+          <div class="modal-ig-board">
+            <div class="modal-ig-grid">${skeletons}</div>
+          </div>
+          <div class="modal-ig-footer">
+            <a href="${entry.instagramUrl}" target="_blank" rel="noopener noreferrer" class="modal-ig-btn">
+              View on Instagram ↗
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderInstagramFallbackState(entry) {
+      modalPageContent.innerHTML = `
+        <div class="modal-ig-wrap">
+          <div class="modal-ig-fallback">
+            <div class="modal-ig-script">Instagram</div>
+            <div class="modal-ig-handle">${escapeHtml(entry.handle || '@harrisondesign')}</div>
+            <p class="modal-ig-fallback-copy">See our latest work on Instagram.</p>
+            <a href="${entry.instagramUrl}" target="_blank" rel="noopener noreferrer" class="modal-ig-btn">
+              View on Instagram ↗
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderInstagramLoadedState(data, entry) {
+      const posts = Array.isArray(data.posts)
+        ? data.posts.filter(p => p && p.visibility !== 'hidden').slice(0, 12)
+        : [];
+
+      if (!posts.length) {
+        renderInstagramFallbackState(entry);
+        return;
+      }
+
+      const username = data.username ? `@${data.username.replace(/^@/, '')}` : (entry.handle || '@harrisondesign');
+      const followersText = formatFollowerCount(data.followersCount);
+      const bioHtml = data.biography
+        ? escapeHtml(data.biography).replace(/\r?\n/g, '<br>')
+        : '';
+      const avatarUrl = data.profilePictureUrl || '';
+
+      const gridHtml = posts.map(post => {
+        const smallUrl = post.sizes && post.sizes.small && post.sizes.small.mediaUrl;
+        const mediumUrl = post.sizes && post.sizes.medium && post.sizes.medium.mediaUrl;
+        const imgSrc = smallUrl || mediumUrl || post.thumbnailUrl || post.mediaUrl || '';
+        const srcSetParts = [];
+        if (smallUrl) srcSetParts.push(`${smallUrl} 300w`);
+        if (mediumUrl) srcSetParts.push(`${mediumUrl} 525w`);
+        const srcSetAttr = srcSetParts.length
+          ? `srcset="${srcSetParts.join(', ')}" sizes="(max-width: 768px) 44vw, 310px"`
+          : '';
+        const rawCaption = (post.prunedCaption || post.caption || '').replace(/\u2060/g, '').replace(/\s+/g, ' ').trim();
+        const altText = rawCaption ? rawCaption.slice(0, 180) : `Instagram post by ${username}`;
+        const permalink = post.permalink || entry.instagramUrl;
+        const isVideo = post.mediaType === 'VIDEO' || post.isReel === true || (permalink && permalink.indexOf('/reel/') !== -1);
+
+        return `
+          <a href="${escapeHtml(permalink)}" target="_blank" rel="noopener noreferrer" class="modal-ig-card" aria-label="${escapeHtml(altText)}">
+            <img src="${escapeHtml(imgSrc)}" ${srcSetAttr} alt="${escapeHtml(altText)}" loading="lazy">
+            ${isVideo ? `
+              <span class="modal-ig-play" aria-hidden="true">
+                <svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" style="margin-left: 2px;">
+                  <path d="M1 1.2L10 6L1 10.8V1.2Z"/>
+                </svg>
+              </span>
+            ` : ''}
+          </a>
+        `;
+      }).join('');
+
+      modalPageContent.innerHTML = `
+        <div class="modal-ig-wrap">
+          <header class="modal-ig-header">
+            <div class="modal-ig-script">Instagram</div>
+            <div class="modal-ig-profile-row">
+              ${avatarUrl ? `<img src="${escapeHtml(avatarUrl)}" alt="${escapeHtml(username)} profile picture" class="modal-ig-avatar" onerror="this.style.display='none'">` : ''}
+              <div class="modal-ig-identity">
+                <div class="modal-ig-handle">${escapeHtml(username)}</div>
+                ${followersText ? `<div class="modal-ig-followers">${escapeHtml(followersText)}</div>` : ''}
+              </div>
+            </div>
+            ${bioHtml ? `<p class="modal-ig-bio">${bioHtml}</p>` : ''}
+          </header>
+
+          <div class="modal-ig-board">
+            <div class="modal-ig-grid">
+              ${gridHtml}
+            </div>
+          </div>
+
+          <div class="modal-ig-footer">
+            <a href="${escapeHtml(entry.instagramUrl)}" target="_blank" rel="noopener noreferrer" class="modal-ig-btn">
+              View on Instagram ↗
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderInstagramFeedSlide(entry, projIdx, pageIdx) {
+      const feedUrl = entry.feedUrl;
+      if (instagramFeedCache[feedUrl]) {
+        renderInstagramLoadedState(instagramFeedCache[feedUrl], entry);
+        return;
+      }
+
+      renderInstagramLoadingState(entry);
+
+      fetch(feedUrl)
+        .then(res => {
+          if (!res.ok) throw new Error('Feed unavailable');
+          return res.json();
+        })
+        .then(data => {
+          if (!data || !Array.isArray(data.posts)) {
+            throw new Error('Invalid feed format');
+          }
+          instagramFeedCache[feedUrl] = data;
+          if (modal.classList.contains('is-open') && currentProjectIndex === projIdx && currentPageIndex === pageIdx) {
+            renderInstagramLoadedState(data, entry);
+          }
+        })
+        .catch(() => {
+          if (modal.classList.contains('is-open') && currentProjectIndex === projIdx && currentPageIndex === pageIdx) {
+            renderInstagramFallbackState(entry);
+          }
+        });
+    }
+
     function updateModalControls() {
       const totalPages = getTotalPages(currentProjectIndex);
       modalPageCounter.textContent = `${currentPageIndex + 1} / ${totalPages}`;
@@ -1539,7 +2131,8 @@
         'panel-db2': 1,
         'panel-sb': 1,
         'panel-package': 2,
-        'panel-tradition': 2
+        'panel-tradition': 2,
+        'panel-social': 3
       };
       const idx = typeof panelKey === 'number' ? panelKey : (mapping[panelKey] !== undefined ? mapping[panelKey] : 0);
       currentProjectIndex = idx;
@@ -1691,6 +2284,20 @@
           el.addEventListener('mouseenter', () => cursor.classList.add('cursor-active'));
           el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-active'));
         });
+
+        const modalContentEl = document.getElementById('modal-page-content');
+        if (modalContentEl) {
+          modalContentEl.addEventListener('mouseover', (e) => {
+            if (e.target.closest('a, button, .modal-ig-card')) {
+              cursor.classList.add('cursor-active');
+            }
+          });
+          modalContentEl.addEventListener('mouseout', (e) => {
+            if (e.target.closest('a, button, .modal-ig-card')) {
+              cursor.classList.remove('cursor-active');
+            }
+          });
+        }
       }
 
       function isDarkUnderCursor(el) {
