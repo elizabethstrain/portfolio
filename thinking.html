@@ -339,7 +339,7 @@
     .page-container {
       max-width: 960px;
       margin: 0 auto;
-      padding: 120px 32px 140px;
+      padding: 120px 32px 48px;
       position: relative;
     }
 
@@ -374,73 +374,232 @@
       width: 100%;
     }
 
-    /* Journal Tile */
-    .journal-tiles-grid {
-      max-width: 760px;
+    /* For The Love — Live Substack Feed */
+    .substack-section {
+      width: 100%;
       margin: 0 auto;
     }
 
-    .journal-tile {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      padding: 24px 0 36px;
-      border-bottom: 0.5px solid rgba(168, 157, 143, 0.45);
-      transition: opacity 250ms ease;
-      cursor: pointer;
+    .substack-section-header {
+      text-align: center;
+      margin-bottom: 40px;
     }
 
-    .journal-tile:hover {
-      opacity: 0.85;
-    }
-
-    .journal-tile-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .journal-category-tag {
+    .substack-eyebrow {
       font-family: var(--font-sans);
       font-weight: 300;
       font-size: 10px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--color-cornflower);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      display: block;
     }
 
-    .journal-tile-title {
+    .substack-section-title {
       font-family: var(--font-serif);
       font-style: italic;
       font-weight: 500;
-      font-size: 2rem;
+      font-size: 2.35rem;
       color: var(--color-near-black);
       line-height: 1.2;
-      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+
+    .substack-section-desc {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(28, 25, 23, 0.78);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .substack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .substack-grid.substack-grid--count-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 640px;
+    }
+
+    .substack-grid.substack-grid--count-1 {
+      grid-template-columns: minmax(0, 1fr);
+      max-width: 420px;
+    }
+
+    .substack-grid.is-hidden {
+      display: none;
+    }
+
+    .substack-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      background: rgba(255, 255, 255, 0.42);
+      border: 0.5px solid rgba(168, 157, 143, 0.35);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.035);
+      transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 280ms ease,
+                  border-color 280ms ease;
+    }
+
+    .substack-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(28, 25, 23, 0.08);
+      border-color: rgba(168, 157, 143, 0.65);
+    }
+
+    .substack-card-media {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: rgba(168, 157, 143, 0.14);
+    }
+
+    .substack-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 460ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .substack-card:hover .substack-card-media img {
+      transform: scale(1.03);
+    }
+
+    .substack-card-media-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-script);
+      font-size: 2rem;
+      color: var(--color-gold);
+      background: rgba(143, 163, 184, 0.12);
+    }
+
+    .substack-card-body {
+      padding: 20px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      text-align: left;
+    }
+
+    .substack-card-date {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--color-taupe);
+      margin-bottom: 8px;
+    }
+
+    .substack-card-title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1.24;
+      color: var(--color-near-black);
+      margin-bottom: 10px;
       letter-spacing: -0.01em;
       transition: color 200ms ease;
     }
 
-    .journal-tile:hover .journal-tile-title {
+    .substack-card:hover .substack-card-title {
       color: var(--color-gold);
     }
 
-    .journal-tile-teaser {
+    .substack-card-excerpt {
       font-family: var(--font-sans);
       font-weight: 300;
-      font-size: 15px;
-      line-height: 1.8;
-      color: rgba(28, 25, 23, 0.82);
-      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(28, 25, 23, 0.78);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
-    .journal-tile-date {
-      font-family: var(--font-sans);
-      font-weight: 300;
-      font-size: 12px;
-      color: var(--color-taupe);
-      letter-spacing: 0.04em;
+    @keyframes substackPulse {
+      0%, 100% { opacity: 0.45; }
+      50% { opacity: 0.85; }
+    }
+
+    .substack-skeleton-card {
+      background: rgba(255, 255, 255, 0.32);
+      border: 0.5px solid rgba(168, 157, 143, 0.25);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .substack-skeleton-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: rgba(168, 157, 143, 0.18);
+      animation: substackPulse 1.5s ease-in-out infinite;
+    }
+
+    .substack-skeleton-body {
+      padding: 20px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .substack-skeleton-line {
+      height: 12px;
+      border-radius: 4px;
+      background: rgba(168, 157, 143, 0.2);
+      animation: substackPulse 1.5s ease-in-out infinite;
+    }
+
+    .substack-more-wrap {
+      margin-top: 36px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .substack-subscribe-wrap {
+      max-width: 480px;
+      width: 100%;
+      margin: 48px auto 0;
+      text-align: center;
+    }
+
+    .substack-subscribe-heading {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.55rem;
+      color: var(--color-near-black);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    .substack-embed-frame {
+      width: 100%;
+      max-width: 480px;
+      height: 320px;
+      border: none;
+      background: transparent;
+      display: block;
+      margin: 0 auto;
     }
 
     /* Footer */
@@ -598,14 +757,17 @@
         padding: 28px 24px;
       }
       .page-container {
-        padding: 100px 24px 80px;
+        padding: 100px 24px 36px;
       }
-      .journal-tile {
+      .substack-section-title {
+        font-size: 2rem;
+      }
+      .substack-grid,
+      .substack-grid.substack-grid--count-2,
+      .substack-grid.substack-grid--count-1 {
         grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .journal-tile-img-box {
-        height: 200px;
+        max-width: 100%;
+        gap: 24px;
       }
       .hamburger {
         top: 24px;
@@ -636,16 +798,54 @@
       <hr class="header-rule">
     </header>
 
-    <!-- Published Pieces -->
-    <section class="journal-tiles-grid" id="journal-tiles">
-      <a href="paris-essay.html" class="journal-tile" id="tile-paris-essay">
-        <div class="journal-tile-content">
-          <span class="journal-category-tag">Personal Essay</span>
-          <h2 class="journal-tile-title">Notes from a Summer in Paris</h2>
-          <p class="journal-tile-teaser">On art de vivre, and what the French understand about brands that most marketers never will.</p>
-          <time class="journal-tile-date">Summer 2025</time>
+    <!-- For The Love (Live Substack Feed) -->
+    <section class="substack-section" id="for-the-love">
+      <div class="substack-section-header">
+        <span class="substack-eyebrow">Newsletter · Substack</span>
+        <h2 class="substack-section-title">For The Love</h2>
+        <p class="substack-section-desc" id="substack-feed-desc">On creativity, culture, good taste, and building a life you actually like.</p>
+      </div>
+
+      <div class="substack-grid" id="substack-posts-grid" aria-live="polite">
+        <div class="substack-skeleton-card" aria-hidden="true">
+          <div class="substack-skeleton-img"></div>
+          <div class="substack-skeleton-body">
+            <div class="substack-skeleton-line" style="width: 36%; height: 10px;"></div>
+            <div class="substack-skeleton-line" style="width: 85%; height: 18px;"></div>
+            <div class="substack-skeleton-line" style="width: 95%;"></div>
+            <div class="substack-skeleton-line" style="width: 70%;"></div>
+          </div>
         </div>
-      </a>
+        <div class="substack-skeleton-card" aria-hidden="true">
+          <div class="substack-skeleton-img"></div>
+          <div class="substack-skeleton-body">
+            <div class="substack-skeleton-line" style="width: 36%; height: 10px;"></div>
+            <div class="substack-skeleton-line" style="width: 80%; height: 18px;"></div>
+            <div class="substack-skeleton-line" style="width: 92%;"></div>
+            <div class="substack-skeleton-line" style="width: 65%;"></div>
+          </div>
+        </div>
+        <div class="substack-skeleton-card" aria-hidden="true">
+          <div class="substack-skeleton-img"></div>
+          <div class="substack-skeleton-body">
+            <div class="substack-skeleton-line" style="width: 36%; height: 10px;"></div>
+            <div class="substack-skeleton-line" style="width: 88%; height: 18px;"></div>
+            <div class="substack-skeleton-line" style="width: 90%;"></div>
+            <div class="substack-skeleton-line" style="width: 68%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="substack-more-wrap">
+        <a href="https://fortheloveliz.substack.com" target="_blank" rel="noopener noreferrer" class="moodboard-btn" id="substack-read-more">
+          Read more on Substack ↗
+        </a>
+      </div>
+
+      <div class="substack-subscribe-wrap">
+        <h3 class="substack-subscribe-heading">Subscribe for new posts</h3>
+        <iframe src="https://fortheloveliz.substack.com/embed" class="substack-embed-frame" width="100%" height="320" style="border:none; background:transparent;" frameborder="0" scrolling="no" title="Subscribe to For The Love on Substack" loading="lazy"></iframe>
+      </div>
     </section>
   </main>
 
@@ -821,17 +1021,31 @@
       });
 
       function bindCursorHovers() {
-        const interactives = document.querySelectorAll('a, button, [role="button"], input, textarea, .journal-tile, .moodboard-btn');
+        const interactives = document.querySelectorAll('a, button, [role="button"], input, textarea, .moodboard-btn');
         interactives.forEach(el => {
           el.addEventListener('mouseenter', () => cursor.classList.add('cursor-active'));
           el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-active'));
         });
+
+        const substackGrid = document.getElementById('substack-posts-grid');
+        if (substackGrid) {
+          substackGrid.addEventListener('mouseover', (e) => {
+            if (e.target.closest('a, .substack-card')) {
+              cursor.classList.add('cursor-active');
+            }
+          });
+          substackGrid.addEventListener('mouseout', (e) => {
+            if (e.target.closest('a, .substack-card')) {
+              cursor.classList.remove('cursor-active');
+            }
+          });
+        }
       }
 
       function isDarkUnderCursor(el) {
         if (!el) return false;
         if (el.tagName === 'IMG' || el.tagName === 'PICTURE' || el.tagName === 'FIGURE' ||
-            el.closest('img, picture, figure, .journal-tile, .moodboard-embed-wrap, [style*="background-image"]')) {
+            el.closest('img, picture, figure, .moodboard-embed-wrap, [style*="background-image"]')) {
           return true;
         }
         if (el.closest('.blue-zone, .footer-blue-zone, .nav-overlay, .modal-overlay, .modal-drawer, [data-theme="dark"], .dark-bg, .bg-dark')) {
@@ -937,6 +1151,115 @@
           startAnimation();
         });
       });
+    })();
+  </script>
+
+  <!-- Live Substack Feed Loader -->
+  <script>
+    (function() {
+      const FEED_API = 'https://api.rss2json.com/v1/api.json?rss_url=https://fortheloveliz.substack.com/feed';
+      const gridEl = document.getElementById('substack-posts-grid');
+      const descEl = document.getElementById('substack-feed-desc');
+      if (!gridEl) return;
+
+      function escapeHtml(str) {
+        return String(str || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function stripHtml(html) {
+        if (!html) return '';
+        const div = document.createElement('div');
+        div.innerHTML = html;
+        return (div.textContent || div.innerText || '').replace(/\s+/g, ' ').trim();
+      }
+
+      function trimCleanly(text, maxChars) {
+        if (!text || text.length <= maxChars) return text;
+        const sliced = text.slice(0, maxChars);
+        const lastSpace = sliced.lastIndexOf(' ');
+        const clean = lastSpace > 40 ? sliced.slice(0, lastSpace) : sliced;
+        return clean.replace(/[,;:\-]+$/, '').trim() + '...';
+      }
+
+      function formatDate(pubDate) {
+        if (!pubDate) return '';
+        const isoLike = String(pubDate).replace(' ', 'T') + (String(pubDate).includes('T') || String(pubDate).includes('Z') ? '' : 'Z');
+        const date = new Date(isoLike);
+        if (isNaN(date.getTime())) return '';
+        return date.toLocaleDateString('en-US', {
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric'
+        });
+      }
+
+      function extractFirstImageFromHtml(html) {
+        if (!html) return '';
+        const match = String(html).match(/<img[^>]+src=["']([^"']+)["']/i);
+        return match ? match[1] : '';
+      }
+
+      function hidePostsGrid() {
+        gridEl.innerHTML = '';
+        gridEl.classList.add('is-hidden');
+      }
+
+      fetch(FEED_API)
+        .then(res => {
+          if (!res.ok) throw new Error('Substack feed unavailable');
+          return res.json();
+        })
+        .then(data => {
+          if (!data || data.status !== 'ok' || !Array.isArray(data.items) || data.items.length === 0) {
+            hidePostsGrid();
+            return;
+          }
+
+          if (descEl && data.feed && data.feed.description) {
+            const cleanFeedDesc = stripHtml(data.feed.description);
+            if (cleanFeedDesc) descEl.textContent = cleanFeedDesc;
+          }
+
+          const posts = data.items.slice(0, 3);
+          gridEl.classList.remove('is-hidden', 'substack-grid--count-1', 'substack-grid--count-2', 'substack-grid--count-3');
+          gridEl.classList.add(`substack-grid--count-${posts.length}`);
+
+          gridEl.innerHTML = posts.map(item => {
+            const title = stripHtml(item.title || 'Untitled');
+            const link = item.link || 'https://fortheloveliz.substack.com';
+            const dateStr = formatDate(item.pubDate);
+            const coverImg = item.thumbnail
+              || (item.enclosure && item.enclosure.link)
+              || extractFirstImageFromHtml(item.content)
+              || extractFirstImageFromHtml(item.description);
+            const rawExcerpt = stripHtml(item.description) || stripHtml(item.content);
+            const excerpt = trimCleanly(rawExcerpt, 118);
+
+            return `
+              <a href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer" class="substack-card">
+                <div class="substack-card-media">
+                  ${coverImg
+                    ? `<img src="${escapeHtml(coverImg)}" alt="${escapeHtml(title)}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'substack-card-media-fallback\\'>For The Love</div>'">`
+                    : `<div class="substack-card-media-fallback">For The Love</div>`
+                  }
+                </div>
+                <div class="substack-card-body">
+                  ${dateStr ? `<time class="substack-card-date">${escapeHtml(dateStr)}</time>` : ''}
+                  <h3 class="substack-card-title">${escapeHtml(title)}</h3>
+                  ${excerpt ? `<p class="substack-card-excerpt">${escapeHtml(excerpt)}</p>` : ''}
+                </div>
+              </a>
+            `;
+          }).join('');
+        })
+        .catch(() => {
+          hidePostsGrid();
+        });
     })();
   </script>
 
